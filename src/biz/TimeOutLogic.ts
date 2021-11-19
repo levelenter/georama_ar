@@ -32,7 +32,7 @@ export class TimeOutLogic {
   timerId: any = 0;
   timerStart(): TimeOutLogic {
     this.timerId = setInterval(() => {
-      console.log("timer : ", this.currentTime.value);
+      // console.log("timer : ", this.currentTime.value);
       this.currentTime.value = this.currentTime.value + 1000;
       if (this.currentTime.value > TimeOutLogic.TIMEOUT) {
         // カウントを超えたら

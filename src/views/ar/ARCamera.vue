@@ -13,18 +13,17 @@ export default defineComponent({
   components: {},
   props: {},
   setup: () => {
-    /**
-     * 動的ラベル
-     */
-    const title = ref("ARCamera");
+    // data
     const publicPath = process.env.BASE_URL;
-    /**
-     * プロパティ
-     */
     const router = useRouter();
 
+    window.addEventListener("message", function (e) {
+      if (e.data.action !== "markerFoundMessage") return;
+      console.log(`${e.data.markerId}`);
+      router.push({ name: "MainPage", query: { id: e.data.markerId } });
+    });
+
     return {
-      title,
       publicPath,
     };
   },

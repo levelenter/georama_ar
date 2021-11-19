@@ -10,12 +10,13 @@ import Notifications from "@kyvg/vue3-notification";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { MessageDialog } from "./components/functions/MessageDialog";
 import { TimeOutLogic } from "./biz/TimeOutLogic";
-import { useRouter } from "vue-router";
+import { DataContext } from "./biz/DataContext";
+
+import "vue-image-lightbox/dist/vue-image-lightbox.min";
 
 window.onerror = (message, file, line) => {
   MessageDialog.systemError(
     "不明な箇所",
-    "[システムエラー]",
     `が発生しました line ${line} file ${file} message ${message}`
   );
 };
@@ -24,7 +25,15 @@ TimeOutLogic.instance.timerStart().timeOutAction = () => {
   location.href = "/";
 };
 
+const context = DataContext.instance;
+context?.loadData().then(() => {
+  console.log("context loaded");
+  // テスト中はセッションキャッシュしない
+  context?.saveInSession();
+});
+
 export const vue = createApp(App);
 vue.use(router);
 vue.use(Notifications);
+
 export const mounted = vue.mount("#app");

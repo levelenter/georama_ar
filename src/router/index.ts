@@ -1,6 +1,9 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
 import ARCamera from "@/views/ar/ARCamera.vue";
+import MainPage from "@/views/contents/MainPage.vue";
+import PointPage from "@/views/contents/PointPage.vue";
+import TrendPage from "@/views/contents/TrendPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,7 +15,21 @@ const routes: Array<RouteRecordRaw> = [
     path: "/ar",
     name: "ARCamera",
     component: ARCamera,
-    meta: { requireAuth: false },
+  },
+  {
+    path: "/main_page",
+    name: "MainPage",
+    component: MainPage,
+  },
+  {
+    path: "/point_page",
+    name: "PointPage",
+    component: PointPage,
+  },
+  {
+    path: "/trend_page",
+    name: "TrendPage",
+    component: TrendPage,
   },
 ];
 

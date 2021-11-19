@@ -29,19 +29,16 @@ export class MessageDialog {
     });
   }
 
-  static systemError(
-    jaFieldName: string,
-    timing: string,
-    value: any = ""
-  ): void {
+  static systemError(msg: string, value: any = ""): string {
     notify({
       duration: -1,
       type: "error",
       title: `システムエラー<span class="time">${dayjs().format(
         DT_FORMAT
       )}</span>`,
-      text: `${jaFieldName}の${timing}${value}。画面をリロードしてやり直してみてください。操作ミスではなくシステムトラブルやバグの可能性があります。お手数ですが[ユーザー]->[お問い合わせ]からご連絡ください`,
+      text: `${msg} ${value}.画面をリロードしてやり直してみてください。操作ミスではなくシステムトラブルやバグの可能性があります。お手数ですが[ユーザー]->[お問い合わせ]からご連絡ください`,
     });
+    return msg;
   }
 
   static async confirm(message: string): Promise<boolean> {

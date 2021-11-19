@@ -10,20 +10,54 @@
   <body style="height: 100%">
     <a-scene
       embedded=""
-      blockvrock-init=""
-      blockvrock-edited-code=""
-      vr-mode-handler=""
-      renderer="colorManagement: true"
+      device-orientation-permission-ui="enabled: false"
       vr-mode-ui="enabled: false"
-      ui-controller="rig:#rig"
       arjs="trackingMethod: best; sourceType: webcam; matrixCodeType: 3x3;detectionMode:mono_and_matrix; debugUIEnabled: false;"
       artoolkit=""
     >
-      <a-marker-camera gps-camera="minDistance: 20;" rotation-reader="">
-        <a-marker emitevents="true" cursor="rayOrigin: mouse;fuse:false">
-          <a-box id="block" wireframe color="#68f5d7" position="0 0 0"></a-box>
+      <a-marker-camera rotation-reader="">
+        <a-marker
+          id="m1"
+          emitevents="true"
+          cursor="rayOrigin: mouse;fuse:false"
+        >
+          <a-box
+            wireframe="true"
+            color="black"
+            position="0 0 0"
+            scale="1 0 1"
+          ></a-box>
+        </a-marker>
+        <a-marker
+          id="m2"
+          emitevents="true"
+          type="barcode"
+          value="0"
+          cursor="rayOrigin: mouse;fuse:false"
+        >
+          <a-box
+            wireframe="true"
+            color="red"
+            position="0 0 0"
+            scale="1 0 1"
+          ></a-box>
         </a-marker>
       </a-marker-camera>
     </a-scene>
   </body>
+  <script>
+    document.addEventListener("markerFound", (e) => {
+      parent.console.log("marker found ", e.target);
+      const markerdId = e.target.id;
+      if (markerdId) {
+        window.parent.postMessage(
+          {
+            action: "markerFoundMessage",
+            markerId: markerdId,
+          },
+          "*"
+        );
+      }
+    });
+  </script>
 </html>
