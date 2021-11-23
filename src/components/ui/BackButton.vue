@@ -4,6 +4,7 @@
   </button>
 </template>
 <script lang='ts'>
+import { TimeOutLogic } from "@/biz/TimeOutLogic";
 import { defineComponent } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
 export default defineComponent({
@@ -15,6 +16,7 @@ export default defineComponent({
   setup: (prop) => {
     const router = useRouter();
     const onClick = () => {
+      TimeOutLogic.instance.resetTimeout();
       router.push({ name: "MainPage", query: { id: prop.id } });
     };
     return {

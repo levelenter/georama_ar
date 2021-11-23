@@ -46,7 +46,10 @@
         <media-section :src="page.p1" :type="page.p1_type" />
       </div>
 
-      <div class="ms-5 ps-5 w-50 pe-5 me-5" style="font-size: 2rem">
+      <div
+        class="ms-5 ps-5 w-50 pe-5 me-5"
+        style="font-size: 2rem; overflow-y: scroll; height: 30rem"
+      >
         {{ page.p2 }}
       </div>
     </main>
@@ -60,7 +63,10 @@
       "
     >
       <div><img :src="'/ui/check.png'" style="" /></div>
-      <div style="font-size: 2.3rem" class="mt-4 mx-5 px-5">
+      <div
+        style="font-size: 2.3rem; overflow-y: scroll; height: 10rem"
+        class="mt-4 mx-5 px-5"
+      >
         {{ page.p3 }}
       </div>
     </footer>

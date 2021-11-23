@@ -6,6 +6,7 @@
   </iframe>
 </template>
 <script lang='ts'>
+import { TimeOutLogic } from "@/biz/TimeOutLogic";
 import { defineComponent, ref } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
 
@@ -20,6 +21,7 @@ export default defineComponent({
     window.addEventListener("message", function (e) {
       if (e.data.action !== "markerFoundMessage") return;
       console.log(`${e.data.markerId}`);
+      TimeOutLogic.instance.resetTimeout();
       router.push({ name: "MainPage", query: { id: e.data.markerId } });
     });
 

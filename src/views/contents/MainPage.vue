@@ -25,7 +25,9 @@
           <div class="h1 mb-5 mt-3 mb-5 pb-2">
             {{ page.m2_1 }}
           </div>
-          <div class="mt-5">{{ page.m2_2 }}</div>
+          <div class="mt-5" style="overflow-y: scroll; height: 20rem">
+            {{ page.m2_2 }}
+          </div>
         </div>
       </div>
 
@@ -44,15 +46,21 @@
       <img :src="'/ui/didyouknow.png'" class="me-4 mb-4 pt-4" />
       <div class="w-25 separater-border px-5">
         <div class="h1">{{ page.m3_1_1 }}</div>
-        <div class="h-6">{{ page.m3_1_2 }}</div>
+        <div class="h-6" style="overflow-y: scroll; height: 6rem">
+          {{ page.m3_1_2 }}
+        </div>
       </div>
       <div class="w-25 separater-border px-5">
         <div class="h1">{{ page.m3_2_1 }}</div>
-        <div class="h-6">{{ page.m3_2_2 }}</div>
+        <div class="h-6" style="overflow-y: scroll; height: 6rem">
+          {{ page.m3_2_2 }}
+        </div>
       </div>
       <div class="w-25 separater-border px-5">
         <div class="h1">{{ page.m3_3_1 }}</div>
-        <div class="h-6">{{ page.m3_3_2 }}</div>
+        <div class="h-6" style="overflow-y: scroll; height: 6rem">
+          {{ page.m3_3_2 }}
+        </div>
       </div>
     </footer>
   </div>
@@ -60,6 +68,7 @@
 <script lang='ts'>
 import { DataContext } from "@/biz/DataContext";
 import { PageRawData } from "@/biz/PageRawData";
+import { TimeOutLogic } from "@/biz/TimeOutLogic";
 import { MessageDialog } from "@/components/functions/MessageDialog";
 import CloseButton from "@/components/ui/CloseButton.vue";
 import MediaSection from "@/components/ui/MediaSection.vue";
@@ -91,6 +100,7 @@ export default defineComponent({
      * 遷移
      */
     const backTo = () => {
+      TimeOutLogic.instance.resetTimeout();
       window.history.back();
     };
 

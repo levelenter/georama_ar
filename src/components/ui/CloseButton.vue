@@ -4,6 +4,7 @@
   </button>
 </template>
 <script lang='ts'>
+import { TimeOutLogic } from "@/biz/TimeOutLogic";
 import { defineComponent, ref } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
 export default defineComponent({
@@ -12,6 +13,7 @@ export default defineComponent({
   setup: () => {
     const router = useRouter();
     const onClose = () => {
+      TimeOutLogic.instance.resetTimeout();
       router.push({ name: "ARCamera" });
     };
     return { onClose };

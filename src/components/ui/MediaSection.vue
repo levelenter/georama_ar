@@ -69,6 +69,7 @@
   </div>
 </template>
 <script lang='ts'>
+import { TimeOutLogic } from "@/biz/TimeOutLogic";
 import { defineComponent, ref } from "@vue/runtime-core";
 
 import { useRouter } from "vue-router";
@@ -83,9 +84,11 @@ export default defineComponent({
   setup: (props) => {
     const full = ref(false);
     const clickImage = () => {
+      TimeOutLogic.instance.resetTimeout();
       full.value = !full.value;
     };
     const toggleFullScreen = () => {
+      TimeOutLogic.instance.resetTimeout();
       full.value = !full.value;
       // if (!document.fullscreenElement) {
       //   document.documentElement.requestFullscreen();

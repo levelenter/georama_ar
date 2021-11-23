@@ -21,6 +21,7 @@
 import { defineComponent } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
 import DebugJumptoContentsSection from "@/components/DebugJumptoContentsSection.vue";
+import { TimeOutLogic } from "@/biz/TimeOutLogic";
 export default defineComponent({
   components: {
     // Test
@@ -33,6 +34,7 @@ export default defineComponent({
     const tutorialImagePath = "";
 
     const gotoAr = () => {
+      TimeOutLogic.instance.resetTimeout();
       router.push({ name: "ARCamera" });
     };
 

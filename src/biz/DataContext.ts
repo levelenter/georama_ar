@@ -26,9 +26,12 @@ export class DataContext {
   }
 
   async loadData(): Promise<DataContext> {
-    const page1 = new PageRawData("page1");
-    await page1.init();
-    this.pages.push(page1);
+    for (let i = 1; i <= 2; i++) {
+      console.log("page ", i);
+      const page = new PageRawData(`page${i}`);
+      await page.init();
+      this.pages.push(page);
+    }
     return this;
   }
 
