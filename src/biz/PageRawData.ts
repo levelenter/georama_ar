@@ -87,7 +87,7 @@ export class PageRawData {
   }
 
   async init() {
-    const base = process.env.NODE_ENV === "production" ? "/" : "/georama_ar";
+    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
     console.log("env ", process.env.NODE_ENV);
 
     const contextPath = `${base}/data/${this.pageName}`;
