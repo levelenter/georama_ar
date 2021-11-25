@@ -29,7 +29,7 @@ const context = DataContext.instance;
 context?.loadData().then(() => {
   console.log("context loaded");
   // セッションキャッシュしない
-  // context?.saveInSession();
+  context?.saveInSession();
 });
 
 export const vue = createApp(App);
