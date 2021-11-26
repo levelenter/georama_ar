@@ -1,7 +1,7 @@
 import { MessageDialog } from "@/components/functions/MessageDialog";
 import { range } from "@/components/functions/utils";
 import { PageRawData } from "./PageRawData";
-export class DataContext {
+class DataContext {
   pages: PageRawData[] = [];
   pageNumbers: number[] = range(0, 18);
   private constructor() {
@@ -49,3 +49,5 @@ export class DataContext {
     return foundPage;
   }
 }
+
+export const dataContext = DataContext.instance;

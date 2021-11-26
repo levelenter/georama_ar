@@ -10,7 +10,7 @@ import Notifications from "@kyvg/vue3-notification";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { MessageDialog } from "./components/functions/MessageDialog";
 import { TimeOutLogic } from "./biz/TimeOutLogic";
-import { DataContext } from "./biz/DataContext";
+import { dataContext } from "./biz/DataContext";
 
 import "vue-image-lightbox/dist/vue-image-lightbox.min";
 
@@ -25,11 +25,10 @@ TimeOutLogic.instance.timerStart().timeOutAction = () => {
   location.href = "/";
 };
 
-const context = DataContext.instance;
-context?.loadData().then(() => {
+dataContext?.loadData().then(() => {
   console.log("context loaded");
   // セッションキャッシュしない
-  context?.saveInSession();
+  // dataContext?.saveInSession();
 });
 
 export const vue = createApp(App);

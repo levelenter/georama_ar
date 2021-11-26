@@ -1,6 +1,6 @@
 <template>
   <button @click="toTrandPage">
-    <img :src="'/ui/trend.png'" />
+    <img :src="base + '/ui/trend.png'" />
   </button>
 </template>
 <script lang='ts'>
@@ -13,12 +13,14 @@ export default defineComponent({
     id: { type: String, default: "" },
   },
   setup: (prop) => {
+    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
+
     const router = useRouter();
     const toTrandPage = () => {
       TimeOutLogic.instance.resetTimeout();
       router.push({ name: "TrendPage", query: { id: prop.id } });
     };
-    return { toTrandPage };
+    return { base, toTrandPage };
   },
 });
 </script>

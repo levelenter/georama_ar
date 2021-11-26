@@ -43,7 +43,7 @@
       class="d-flex mt-5 pt-5 ms-5 ps-5 justify-content-end fixed-bottom"
       style="z-index: 0"
     >
-      <img :src="'/ui/didyouknow.png'" class="me-4 mb-4 pt-4" />
+      <img :src="base + '/ui/didyouknow.png'" class="me-4 mb-4 pt-4" />
       <div class="w-25 separater-border px-5">
         <div class="h1">{{ page.m3_1_1 }}</div>
         <div class="h-6" style="overflow-y: scroll; height: 6rem">
@@ -66,7 +66,7 @@
   </div>
 </template>
 <script lang='ts'>
-import { DataContext } from "@/biz/DataContext";
+import { dataContext } from "@/biz/DataContext";
 import { PageRawData } from "@/biz/PageRawData";
 import { TimeOutLogic } from "@/biz/TimeOutLogic";
 import { MessageDialog } from "@/components/functions/MessageDialog";
@@ -83,6 +83,7 @@ export default defineComponent({
     /**
      * 動的ラベル
      */
+    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
 
     const page = ref(new PageRawData(""));
     const route = useRoute();
@@ -90,8 +91,7 @@ export default defineComponent({
     const id = route.query.id as string;
 
     onMounted(() => {
-      const context = DataContext.instance;
-      const _page = context?.getPage(id);
+      const _page = dataContext?.getPage(id);
       if (!_page) throw Error(MessageDialog.systemError("page data Not Found"));
       page.value = _page;
     });
@@ -106,6 +106,7 @@ export default defineComponent({
 
     return {
       id,
+      base,
       backTo,
       page,
     };

@@ -73,7 +73,7 @@
   </div>
 </template>
 <script lang='ts'>
-import { DataContext } from "@/biz/DataContext";
+import { dataContext } from "@/biz/DataContext";
 import { PageRawData } from "@/biz/PageRawData";
 import { MessageDialog } from "@/components/functions/MessageDialog";
 import BackButton from "@/components/ui/BackButton.vue";
@@ -91,8 +91,7 @@ export default defineComponent({
 
     const page = ref(new PageRawData(""));
     onMounted(() => {
-      const context = DataContext.instance;
-      const _page = context?.getPage(id);
+      const _page = dataContext?.getPage(id);
       if (!_page) throw Error(MessageDialog.systemError("page data Not Found"));
       page.value = _page;
     });
