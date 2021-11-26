@@ -1,6 +1,6 @@
 <template>
   <button @click="onClose">
-    <img :src="'/ui/batu.png'" style="width: 5rem; height: 5rem" />
+    <img :src="base + '/ui/batu.png'" style="width: 5rem; height: 5rem" />
   </button>
 </template>
 <script lang='ts'>
@@ -12,11 +12,13 @@ export default defineComponent({
   props: {},
   setup: () => {
     const router = useRouter();
+    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
+
     const onClose = () => {
       TimeOutLogic.instance.resetTimeout();
       router.push({ name: "ARCamera" });
     };
-    return { onClose };
+    return { onClose, base };
   },
 });
 </script>

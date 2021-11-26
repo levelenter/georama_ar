@@ -88,6 +88,7 @@ export default defineComponent({
   setup: () => {
     const route = useRoute();
     const id = route.query.id as string;
+    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
 
     const page = ref(new PageRawData(""));
     onMounted(() => {
@@ -98,6 +99,7 @@ export default defineComponent({
 
     return {
       id,
+      base,
       page,
     };
   },

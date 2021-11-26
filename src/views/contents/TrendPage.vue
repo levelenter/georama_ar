@@ -43,7 +43,7 @@
   <main class="w-100 mt-4 pt-5">
     <div class="d-flex mb-5 pb-4">
       <img
-        :src="'/ui/01_movement.png'"
+        :src="base + '/ui/01_movement.png'"
         class="border-right-gray"
         style="height: 18rem"
       />
@@ -64,7 +64,7 @@
     </div>
     <div class="d-flex mt-5">
       <img
-        :src="'/ui/02_needs.png'"
+        :src="base + '/ui/02_needs.png'"
         class="border-right-gray"
         style="height: 18rem"
       />
@@ -118,6 +118,7 @@ export default defineComponent({
   setup: () => {
     const route = useRoute();
     const id = route.query.id as string;
+    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
 
     const page = ref(new PageRawData(""));
     onMounted(() => {
@@ -128,6 +129,7 @@ export default defineComponent({
 
     return {
       id,
+      base,
       page,
     };
   },
