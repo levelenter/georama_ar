@@ -62,7 +62,7 @@
         z-index: 0;
       "
     >
-      <div><img :src="'/ui/check.png'" style="" /></div>
+      <div><img :src="base + '/ui/check.png'" style="" /></div>
       <div
         style="font-size: 2.3rem; overflow-y: scroll; height: 10rem"
         class="mt-4 mx-5 px-5"
