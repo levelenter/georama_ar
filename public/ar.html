@@ -15,43 +15,37 @@
       arjs="trackingMethod: best; sourceType: webcam; matrixCodeType: 3x3;detectionMode:mono_and_matrix; debugUIEnabled: false;"
       artoolkit=""
     >
-      <a-marker-camera rotation-reader="">
-        <a-marker
-          id="m1"
-          emitevents="true"
-          cursor="rayOrigin: mouse;fuse:false"
-          type="pattern"
-          url="./marker/pattern-1.patt"
-        >
-          <a-box
-            wireframe="true"
-            color="black"
-            position="0 0 0"
-            scale="1 0 1"
-          ></a-box>
-        </a-marker>
-        <a-marker
-          id="m2"
-          emitevents="true"
-          type="barcode"
-          value="0"
-          cursor="rayOrigin: mouse;fuse:false"
-        >
-          <a-box
-            wireframe="true"
-            color="red"
-            position="0 0 0"
-            scale="1 0 1"
-          ></a-box>
-        </a-marker>
-      </a-marker-camera>
+      <a-marker-camera rotation-reader=""> </a-marker-camera>
     </a-scene>
   </body>
   <script>
+    window.addEventListener("load", () => {
+      const cam = document.querySelector("a-marker-camera");
+      parent.console.log("the cam in", cam);
+      for (let i = 1; i <= 19; i++) {
+        parent.console.log(i);
+        const a_marker = document.createElement("a-marker");
+        a_marker.id = `m${i}`;
+        a_marker.setAttribute("emitevents", "true");
+        a_marker.setAttribute("cursor", "rayOrigin: mouse;fuse:false");
+        a_marker.setAttribute("type", "pattern");
+        a_marker.setAttribute("url", `./marker/pattern-${i}.patt`);
+
+        const a_box = document.createElement("a-box");
+        a_box.setAttribute("wireframe", "true");
+        a_box.setAttribute("color", "black");
+        a_box.setAttribute("position", "0 0 0");
+        a_box.setAttribute("scale", "1 0 1");
+
+        a_marker.appendChild(a_box);
+        cam.append(a_marker);
+      }
+    });
     document.addEventListener("markerFound", (e) => {
       parent.console.log("marker found ", e.target);
+      parent.console.log(`id:${e.target.id}`);
       const markerdId = e.target.id;
-      if (markerdId) {
+      if (markerdId && markerdId !== "cam") {
         window.parent.postMessage(
           {
             action: "markerFoundMessage",
