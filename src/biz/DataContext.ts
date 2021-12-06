@@ -26,7 +26,7 @@ class DataContext {
   }
 
   async loadData(): Promise<DataContext> {
-    for (let i = 1; i < 2; i++) {
+    for (let i = 1; i < 19; i++) {
       console.log("page ", i);
       const page = new PageRawData(`page${i}`);
       await page.init();

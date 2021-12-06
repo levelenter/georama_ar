@@ -7,7 +7,7 @@
         <img :src="page.m1_1" style="width: 8 rem; height: 10rem" />
       </div>
       <div class="ms-5 mt-5 w-100">
-        <div class="h1">{{ page.m1_2 }}</div>
+        <div class="h1 yg-semi">{{ page.m1_2 }}</div>
         <div style="background-color: yellow; height: 1rem" class="my-3" />
         <div class="h3">{{ page.m1_3 }}</div>
       </div>
