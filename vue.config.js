@@ -2,7 +2,7 @@
 const path = require("path");
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/georama_ar/" : "/",
+  publicPath: "/georama_ar/", // process.env.NODE_ENV === "production" ? "/georama_ar/" : "/",
 
   // configureWebpack: {
   //   devtool: "source-map",

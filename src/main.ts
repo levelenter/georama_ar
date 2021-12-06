@@ -22,7 +22,7 @@ window.onerror = (message, file, line) => {
 };
 
 TimeOutLogic.instance.timerStart().timeOutAction = () => {
-  location.href = "/";
+  router.push({ name: "Home" });
 };
 
 dataContext?.loadData().then(() => {

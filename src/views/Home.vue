@@ -8,7 +8,7 @@
 
         <img :src="tutorialImagePath" />
 
-        <h2>タブレットを手に持って、マーカーをかざしてください</h2>
+        <h2 class="yg">タブレットを手に持って、マーカーをかざしてください</h2>
         <button class="btn btn-primary w-50" @click="gotoAr">スタート</button>
 
         <DebugJumptoContentsSection />
