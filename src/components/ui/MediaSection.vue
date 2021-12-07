@@ -30,6 +30,7 @@
       :src="src"
       :style="{ height: height, width: width }"
       autoplay
+      muted
       @click="toggleFullScreen"
     ></video>
   </div>
@@ -96,7 +97,7 @@ export default defineComponent({
     width: { type: String, default: "60rem" },
   },
   setup: (props) => {
-    const full = ref(false);
+    const full = ref(false); // コンテンツのフルスクリーン制御
     const clickImage = () => {
       TimeOutLogic.instance.resetTimeout();
       full.value = !full.value;
@@ -104,16 +105,24 @@ export default defineComponent({
     const toggleFullScreen = () => {
       TimeOutLogic.instance.resetTimeout();
       full.value = !full.value;
-      // if (!document.fullscreenElement) {
-      //   document.documentElement.requestFullscreen();
-      //   full.value = true;
-      // } else {
-      //   full.value = false;
-      //   if (document.exitFullscreen) {
-      //     document.exitFullscreen();
-      //   }
-      // }
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        full.value = true;
+      } else {
+        full.value = false;
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
     };
+
+    const isFullScreen = ref(false); // Windowのフルスクリーン制御
+    window.addEventListener("fullscreenchange", (e) => {
+      isFullScreen.value = !isFullScreen.value;
+      full.value = isFullScreen.value;
+      console.log(e);
+    });
+
     const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
 
     return { clickImage, toggleFullScreen, full, base };

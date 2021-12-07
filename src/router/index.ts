@@ -1,9 +1,9 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
 import ARCamera from "@/views/ar/ARCamera.vue";
-import MainPage from "@/views/contents/MainPage.vue";
-import PointPage from "@/views/contents/PointPage.vue";
-import TrendPage from "@/views/contents/TrendPage.vue";
+import MainPage from "@/views/main/MainPage.vue";
+import PointPage from "@/views/point/PointPage.vue";
+import TrendPage from "@/views/trend/TrendPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {

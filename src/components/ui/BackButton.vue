@@ -1,6 +1,6 @@
 <template>
   <button @click="onClick">
-    <img :src="base + '/ui/back_black.png'" style="height: 5rem" />
+    <img :src="base + '/ui/back_black.png'" style="height: 8rem" />
   </button>
 </template>
 <script lang='ts'>

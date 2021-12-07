@@ -7,35 +7,35 @@
     <close-button class="position-absolute top-0 end-0" />
 
     <header class="w-100">
-      <div class="w-100 d-flex justify-content-center h1 mt-2">
+      <div class="w-100 d-flex justify-content-center h1 mt-5">
         <div>
           <div>
-            <div style="position: relative; font-size: 4rem; z-index: 1000">
+            <div style="position: relative; z-index: 1" class="fs-80">
               ポイントを知る
             </div>
             <div
               style="
                 background-color: yellow;
-                height: 1rem;
+                height: 2rem;
                 position: relative;
-                bottom: 1.3rem;
+                bottom: 3rem;
               "
             ></div>
           </div>
           <div
             style="
-            position: absolute;
-            top: 300px;
-            left:200px
-            border-bottom: 1rem yellow solid;
-            padding-bottom: rem;
-          "
+              position: absolute;
+              top: 20rem;
+              left: 20rem;
+              border-bottom: 8rem yellow solid;
+              padding-bottom: rem;
+            "
           />
         </div>
       </div>
       <div
-        class="w-100 d-flex justify-content-center h2 mt-4"
-        style="font-size: 3rem"
+        class="w-100 d-flex justify-content-center h2 mt-4 fs-44"
+        style="color: gray"
       >
         {{ page.m1_2 }}
       </div>
@@ -43,12 +43,17 @@
 
     <main class="mt-4 ps-5 pt-5 d-flex">
       <div class="ms-5 me-4">
-        <media-section :src="page.p1" :type="page.p1_type" />
+        <media-section
+          :src="page.p1"
+          :type="page.p1_type"
+          height="46rem"
+          width="80rem"
+        />
       </div>
 
       <div
-        class="ms-5 ps-5 w-50 pe-5 me-5"
-        style="font-size: 2rem; overflow-y: scroll; height: 30rem"
+        class="ms-3 ps-2 w-50 pe-5 me-5 fs-50"
+        style="overflow-y: scroll; height: 46rem"
       >
         {{ page.p2 }}
       </div>
@@ -58,14 +63,14 @@
       class="fixed-bottom"
       style="
         background-color: rgb(229, 229, 229);
-        min-height: 20rem;
+        min-height: 35rem;
         z-index: 0;
       "
     >
       <div><img :src="base + '/ui/check.png'" style="" /></div>
       <div
-        style="font-size: 2.3rem; overflow-y: scroll; height: 10rem"
-        class="mt-4 mx-5 px-5"
+        style="overflow-y: scroll; height: 20rem"
+        class="mt-4 mx-5 px-5 fs-39"
       >
         {{ page.p3 }}
       </div>
