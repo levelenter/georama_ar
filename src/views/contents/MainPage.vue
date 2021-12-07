@@ -4,61 +4,68 @@
 
     <header class="d-flex ps-5 mt-5 w-100 mb-5 pb-4">
       <div class="mx-4">
-        <img :src="page.m1_1" style="width: 8 rem; height: 10rem" />
+        <img :src="page.m1_1" style="width: 16 rem; height: 20rem" />
       </div>
       <div class="ms-5 mt-5 w-100">
-        <div class="h1 yg-semi">{{ page.m1_2 }}</div>
-        <div style="background-color: yellow; height: 1rem" class="my-3" />
-        <div class="h3">{{ page.m1_3 }}</div>
+        <div class="yg-semi fs-80">{{ page.m1_2 }}</div>
+        <div
+          style="background-color: yellow; height: 1.5rem; margin-top: -1.3rem"
+        />
+        <div class="fs-50" style="color: gray">{{ page.m1_3 }}</div>
       </div>
     </header>
 
-    <main class="w-100 d-flex mt-5 pt-3">
+    <main class="w-100 d-flex mt-5" style="margin-top: 14rem; height: 60rem">
       <div
         style="background-color: rgb(222, 223, 222)"
-        class="flex-grow-1 py-4 h-50 d-flex"
+        class="flex-grow-1 py-4 h-100 d-flex"
       >
-        <div class="my-5 me-5">
-          <media-section :src="page.m2_3" :type="page.m2_3_type" />
+        <div class="me-5" style="margin-top: 8rem">
+          <media-section
+            :src="page.m2_3"
+            :type="page.m2_3_type"
+            :width="'74.2rem'"
+            :height="'42.3rem'"
+          />
         </div>
-        <div>
-          <div class="h1 mb-5 mt-3 mb-5 pb-2">
+        <div class="me-5">
+          <div class="yg-semi fs-49" style="margin-top: 4.5rem">
             {{ page.m2_1 }}
           </div>
-          <div class="mt-5" style="overflow-y: scroll; height: 20rem">
+          <div
+            class="yg fs-42"
+            style="margin-top: 3.5rem; overflow-y: scroll; height: 30rem"
+          >
             {{ page.m2_2 }}
           </div>
         </div>
       </div>
 
-      <div class="text-end ms-5 mb-5 pe-5">
-        <div class="h-25" />
-        <trend-button :id="id" />
-        <div class="h-25" />
-        <point-button :id="id" />
+      <div class="text-end ms-5 mb-3 pe-5 pt-5">
+        <trend-button :id="id" style="margin-top: 8rem" />
+        <point-button :id="id" style="margin-top: 8rem" />
       </div>
     </main>
 
-    <footer
-      class="d-flex mt-5 pt-5 ms-5 ps-5 justify-content-end fixed-bottom"
-      style="z-index: 0"
-    >
-      <img :src="base + '/ui/didyouknow.png'" class="me-4 mb-4 pt-4" />
-      <div class="w-25 separater-border px-5">
-        <div class="h1">{{ page.m3_1_1 }}</div>
-        <div class="h-6" style="overflow-y: scroll; height: 6rem">
+    <footer class="d-flex justify-content-end fixed-bottom" style="z-index: 0">
+      <div style="margin-bottom: 4rem; margin-right: 3rem">
+        <img :src="base + '/ui/didyouknow.png'" />
+      </div>
+      <div class="separater-border px-5">
+        <div class="fs-42 yg-semi">{{ page.m3_1_1 }}</div>
+        <div class="fs-22 yg" style="overflow-y: scroll; height: 10rem">
           {{ page.m3_1_2 }}
         </div>
       </div>
       <div class="w-25 separater-border px-5">
-        <div class="h1">{{ page.m3_2_1 }}</div>
-        <div class="h-6" style="overflow-y: scroll; height: 6rem">
+        <div class="fs-42 yg-semi">{{ page.m3_2_1 }}</div>
+        <div class="fs-22 yg" style="overflow-y: scroll; height: 10rem">
           {{ page.m3_2_2 }}
         </div>
       </div>
       <div class="w-25 separater-border px-5">
-        <div class="h1">{{ page.m3_3_1 }}</div>
-        <div class="h-6" style="overflow-y: scroll; height: 6rem">
+        <div class="fs-42 yg-semi">{{ page.m3_3_1 }}</div>
+        <div class="fs-22 yg" style="overflow-y: scroll; height: 10rem">
           {{ page.m3_3_2 }}
         </div>
       </div>
@@ -91,9 +98,11 @@ export default defineComponent({
     const id = route.query.id as string;
 
     onMounted(() => {
-      const _page = dataContext?.getPage(id);
-      if (!_page) throw Error(MessageDialog.systemError("page data Not Found"));
-      page.value = _page;
+      dataContext?.getPage(id).then((_page) => {
+        if (!_page)
+          throw Error(MessageDialog.systemError("page data Not Found"));
+        page.value = _page;
+      });
     });
 
     /**

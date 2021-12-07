@@ -1,6 +1,9 @@
 <template>
   <button @click="toTrandPage">
-    <img :src="base + '/ui/trend.png'" />
+    <img
+      :src="base + '/ui/trend.png'"
+      style="width: 14.3rem; height: 15.2rem"
+    />
   </button>
 </template>
 <script lang='ts'>

@@ -1,21 +1,34 @@
 <template>
   <div
     id="contents-image"
-    class="my-2"
+    class="my-2 position-relative"
     style="background-color: rgb(156, 156, 156); object-fit: contain"
-    :style="{ height: height }"
+    :style="{ height: height, width: width }"
   >
+    <img
+      :src="base + '/ui/lens.png'"
+      class="bottom-0 end-0"
+      :style="{
+        height: '5.1rem',
+        width: '5.1rem',
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+      }"
+      @click="clickImage"
+    />
+
     <img
       @click="clickImage"
       v-if="type === 'png' || type === 'jpg'"
       :src="src"
-      :style="{ height: height }"
+      :style="{ height: height, width: width }"
     />
 
     <video
       v-if="type === 'mp4'"
       :src="src"
-      :style="{ height: height }"
+      :style="{ height: height, width: width }"
       autoplay
       @click="toggleFullScreen"
     ></video>
@@ -80,6 +93,7 @@ export default defineComponent({
     src: { type: String, default: "" },
     type: { type: String, default: "" },
     height: { type: String, default: "30rem" },
+    width: { type: String, default: "60rem" },
   },
   setup: (props) => {
     const full = ref(false);
@@ -100,8 +114,9 @@ export default defineComponent({
       //   }
       // }
     };
+    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
 
-    return { clickImage, toggleFullScreen, full };
+    return { clickImage, toggleFullScreen, full, base };
   },
 });
 </script>

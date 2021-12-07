@@ -92,9 +92,11 @@ export default defineComponent({
 
     const page = ref(new PageRawData(""));
     onMounted(() => {
-      const _page = dataContext?.getPage(id);
-      if (!_page) throw Error(MessageDialog.systemError("page data Not Found"));
-      page.value = _page;
+      dataContext?.getPage(id).then((_page) => {
+        if (!_page)
+          throw Error(MessageDialog.systemError("page data Not Found"));
+        page.value = _page;
+      });
     });
 
     return {

@@ -1,4 +1,16 @@
 <template>
+  <img
+    :src="`${publicPath}ui/camera_overlay.png`"
+    style="
+      position: fixed;
+      top: 0rem;
+      left: 0rem;
+      width: 100%;
+      height: 120rem;
+      z-index: 1000;
+    "
+  />
+
   <iframe
     :src="`${publicPath}ar.html`"
     class="h-100 position-absolute top-0 w-100"

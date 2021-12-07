@@ -1,0 +1,38 @@
+html {
+  /* font-size: 1rem; */
+  font-size: 62.5%;
+}
+.yg-semi {
+  font-family: "Yu Gothic UI Semibold", "YuGothic Bold", "YuGothicUI-Semibold",
+    sans-serif;
+}
+
+.yg {
+  font-family: "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, sans-serif;
+}
+
+.corbel-b {
+}
+
+.fs-80 {
+  font-size: 8rem;
+}
+
+.fs-50 {
+  font-size: 5rem;
+}
+.fs-49 {
+  font-size: 4.9rem;
+}
+.fs-44 {
+  font-size: 4.4rem;
+}
+.fs-42 {
+  font-size: 4.2rem;
+}
+.fs-24 {
+  font-size: 2.4rem;
+}
+.fs-22 {
+  font-size: 2.2rem;
+}

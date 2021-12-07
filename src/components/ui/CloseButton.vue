@@ -1,6 +1,6 @@
 <template>
   <button @click="onClose">
-    <img :src="base + '/ui/batu.png'" style="width: 5rem; height: 5rem" />
+    <img :src="base + '/ui/batu.png'" style="width: 8.1rem; height: 8.1rem" />
   </button>
 </template>
 <script lang='ts'>

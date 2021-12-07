@@ -1,6 +1,9 @@
 <template>
   <button @click="toPointPage">
-    <img :src="base + '/ui/point.png'" />
+    <img
+      :src="base + '/ui/point.png'"
+      style="width: 14.3rem; height: 15.2rem"
+    />
   </button>
 </template>
 <script lang='ts'>

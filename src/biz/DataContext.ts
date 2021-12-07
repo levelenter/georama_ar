@@ -4,7 +4,7 @@ import { PageRawData } from "./PageRawData";
 class DataContext {
   pages: PageRawData[] = [];
   pageNumbers: number[] = range(0, 18);
-  private constructor() {
+  constructor() {
     // hide constructor
   }
   private static _instance: DataContext | null = null;
@@ -19,6 +19,8 @@ class DataContext {
       this._instance = new DataContext();
     }
     return this._instance;
+    // this._instance = new DataContext();
+    // return this._instance;
   }
 
   async saveInSession(): Promise<void> {
@@ -30,24 +32,31 @@ class DataContext {
       console.log("page ", i);
       const page = new PageRawData(`page${i}`);
       await page.init();
+      console.log("inited page", i, page);
       this.pages.push(page);
     }
     return this;
   }
 
-  getPage(id: string): PageRawData {
+  async getPage(id: string): Promise<PageRawData> {
     const index = id.replace("m", "");
     const pageName = `page${index}`;
-    const foundPage = this.pages.find((page) => page.pageName === pageName);
+    console.log("get page ", id, pageName, this.pages);
+    let foundPage = this.pages.find((page) => page.pageName === pageName);
     if (!foundPage) {
-      throw new Error(
-        MessageDialog.systemError(
-          `ページのデータが見つかりません id:${id},page:${pageName}`
-        )
-      );
+      const page = new PageRawData(`page${index}`);
+      try {
+        foundPage = await page.init();
+      } catch (error) {
+        throw new Error(
+          MessageDialog.systemError(
+            `ページのデータが見つかりません id:${id},page:${pageName}`
+          )
+        );
+      }
     }
     return foundPage;
   }
 }
 
-export const dataContext = DataContext.instance;
+export const dataContext = new DataContext();
