@@ -82,8 +82,13 @@ export class PageRawData {
   }
 
   async getText(path: string): Promise<string> {
-    const response = await axios.get(path);
-    return response.data as string;
+    try {
+      const response = await axios.get(path);
+      return response.data as string;
+    } catch (e) {
+      console.error(e);
+      return "";
+    }
   }
 
   async init(): Promise<PageRawData> {

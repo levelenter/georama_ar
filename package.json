@@ -9,7 +9,8 @@
     "dev:sv": "http-server dist 8080",
     "build": "vue-cli-service build --mode production",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "conv": "ts-node tests/convert.ts"
   },
   "dependencies": {
     "@kyvg/vue3-notification": "^2.3.4",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
+    "@types/xlsx-populate": "github:JanLoebel/types-xlsx-populate",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -43,7 +45,9 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0",
     "jest": "^24.9.0",
+    "ts-node": "^10.4.0",
     "typescript": "~4.1.5",
-    "vue-jest": "^5.0.0-0"
+    "vue-jest": "^5.0.0-0",
+    "xlsx-populate": "^1.21.0"
   }
 }

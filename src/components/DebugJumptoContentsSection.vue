@@ -1,8 +1,12 @@
 <template>
-  <div class="w-25 position-absolute bottom-0 start-0 d-flex">
-    <div class="me-3 d-flex">
-      <span>ID:</span><input type="text" v-model="id" />
-      <button class="btn btn-secondary" @click="moveToMain">moveToMain</button>
+  <div class="w-100 position-absolute bottom-0 start-0 d-flex">
+    <div class="me-3 row w-100 gy-2 gx-2">
+      <div v-for="(i, index) of new Array(19)" :key="i" class="col-3 px-1">
+        {{ i }} {{ index }}
+        <button class="btn btn-secondary" @click="move(index + 1)">
+          {{ index + 1 }}を参照
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -13,15 +17,13 @@ export default defineComponent({
   components: {},
   props: {},
   setup: () => {
-    const id = ref(1);
     const router = useRouter();
 
-    const moveToMain = () => {
-      router.push({ name: "MainPage", query: { id: `m${id.value}` } });
+    const move = (id: number) => {
+      router.push({ name: "MainPage", query: { id: `m${id}` } });
     };
     return {
-      id,
-      moveToMain,
+      move,
     };
   },
 });

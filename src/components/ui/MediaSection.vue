@@ -2,7 +2,7 @@
   <div
     id="contents-image"
     class="my-2 position-relative"
-    style="background-color: rgb(156, 156, 156); object-fit: contain"
+    style="object-fit: contain"
     :style="{ height: height, width: width }"
   >
     <img
@@ -12,6 +12,7 @@
         height: '5.1rem',
         width: '5.1rem',
         position: 'absolute',
+
         bottom: 0,
         right: 0,
       }"
@@ -22,7 +23,12 @@
       @click="clickImage"
       v-if="type === 'png' || type === 'jpg'"
       :src="src"
-      :style="{ height: height, width: width }"
+      :style="{
+        height: height,
+        width: width,
+        'border-radius': radius,
+        'object-fit': 'cover', // 'contain' // もともとの表示をトリミングしない場合以下
+      }"
     />
 
     <video
@@ -51,6 +57,7 @@
       w-100
       d-flex
       align-items-center
+      justify-content-center
     "
   >
     <img :src="src" @click="clickImage" />
@@ -71,6 +78,7 @@
       w-100
       d-flex
       align-items-center
+      justify-content-center
     "
   >
     <video
@@ -95,6 +103,7 @@ export default defineComponent({
     type: { type: String, default: "" },
     height: { type: String, default: "30rem" },
     width: { type: String, default: "60rem" },
+    radius: { type: String, default: "0rem" },
   },
   setup: (props) => {
     const full = ref(false); // コンテンツのフルスクリーン制御
