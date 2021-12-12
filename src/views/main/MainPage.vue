@@ -49,7 +49,7 @@
 
     <footer class="d-flex justify-content-end fixed-bottom" style="z-index: 0">
       <div style="margin-bottom: 4rem; margin-right: 3rem">
-        <img :src="base + '/ui/didyouknow.png'" />
+        <img :src="base + 'ui/didyouknow.png'" />
       </div>
       <div class="separater-border px-5">
         <div class="fs-42 yg-semi">{{ page.m3_1_1 }}</div>
@@ -90,8 +90,8 @@ export default defineComponent({
     /**
      * 動的ラベル
      */
-    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
-
+    const base = process.env.BASE_URL;
+    console.log("base", base);
     const page = ref(new PageRawData(""));
     const route = useRoute();
 

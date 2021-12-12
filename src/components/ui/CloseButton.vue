@@ -1,6 +1,6 @@
 <template>
   <button @click="onClose">
-    <img :src="base + '/ui/batu.png'" style="width: 8.1rem; height: 8.1rem" />
+    <img :src="base + 'ui/batu.png'" style="width: 8.1rem; height: 8.1rem" />
   </button>
 </template>
 <script lang='ts'>
@@ -12,7 +12,7 @@ export default defineComponent({
   props: {},
   setup: () => {
     const router = useRouter();
-    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
+    const base = process.env.BASE_URL; //process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
 
     const onClose = () => {
       TimeOutLogic.instance.resetTimeout();

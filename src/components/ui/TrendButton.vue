@@ -1,9 +1,6 @@
 <template>
   <button @click="toTrandPage">
-    <img
-      :src="base + '/ui/trend.png'"
-      style="width: 14.3rem; height: 15.2rem"
-    />
+    <img :src="base + 'ui/trend.png'" style="width: 14.3rem; height: 15.2rem" />
   </button>
 </template>
 <script lang='ts'>
@@ -16,7 +13,7 @@ export default defineComponent({
     id: { type: String, default: "" },
   },
   setup: (prop) => {
-    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
+    const base = process.env.BASE_URL; //process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
 
     const router = useRouter();
     const toTrandPage = () => {

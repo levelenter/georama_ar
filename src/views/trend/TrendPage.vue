@@ -42,7 +42,7 @@
 
   <main class="w-100" style="margin-top: 10rem">
     <div class="d-flex mb-5 pb-4">
-      <section-title-image :url="base + '/ui/01_movement.png'" />
+      <section-title-image :url="base + 'ui/01_movement.png'" />
 
       <text-contents :contents="page.t1" />
 
@@ -56,7 +56,7 @@
       </div>
     </div>
     <div class="d-flex mt-5">
-      <section-title-image :url="base + '/ui/02_needs.png'" />
+      <section-title-image :url="base + 'ui/02_needs.png'" />
 
       <text-contents :contents="page.t3" />
 
@@ -106,7 +106,7 @@ export default defineComponent({
   setup: () => {
     const route = useRoute();
     const id = route.query.id as string;
-    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
+    const base = process.env.BASE_URL;
 
     const page = ref(new PageRawData(""));
     onMounted(() => {

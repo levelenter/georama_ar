@@ -6,7 +6,7 @@
     :style="{ height: height, width: width }"
   >
     <img
-      :src="base + '/ui/lens.png'"
+      :src="base + 'ui/lens.png'"
       class="bottom-0 end-0"
       :style="{
         height: '5.1rem',
@@ -123,7 +123,7 @@ export default defineComponent({
       console.log(e);
     });
 
-    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
+    const base = process.env.BASE_URL; //process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
 
     return { clickImage, toggleFullScreen, full, base };
   },

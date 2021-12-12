@@ -87,10 +87,10 @@ export class PageRawData {
   }
 
   async init(): Promise<PageRawData> {
-    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
+    const base = process.env.BASE_URL;
     console.log("env ", process.env.NODE_ENV);
 
-    const contextPath = `${base}/data/${this.pageName}`;
+    const contextPath = `${base}data/${this.pageName}`;
     this.m1_1 = `${contextPath}/main1_1.png`;
     this.m1_2 = await this.getText(`${contextPath}/main1_2.txt`);
     this.m1_3 = await this.getText(`${contextPath}/main1_3.txt`);

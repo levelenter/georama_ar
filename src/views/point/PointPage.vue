@@ -67,7 +67,7 @@
         z-index: 0;
       "
     >
-      <div><img :src="base + '/ui/check.png'" style="" /></div>
+      <div><img :src="base + 'ui/check.png'" style="" /></div>
       <div
         style="overflow-y: scroll; height: 20rem"
         class="mt-4 mx-5 px-5 fs-39"
@@ -93,7 +93,7 @@ export default defineComponent({
   setup: () => {
     const route = useRoute();
     const id = route.query.id as string;
-    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
+    const base = process.env.BASE_URL;
 
     const page = ref(new PageRawData(""));
     onMounted(() => {

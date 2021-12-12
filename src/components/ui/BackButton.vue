@@ -1,6 +1,6 @@
 <template>
   <button @click="onClick">
-    <img :src="base + '/ui/back_black.png'" style="height: 8rem" />
+    <img :src="base + 'ui/back_black.png'" style="height: 8rem" />
   </button>
 </template>
 <script lang='ts'>
@@ -14,7 +14,7 @@ export default defineComponent({
   },
 
   setup: (prop) => {
-    const base = process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
+    const base = process.env.BASE_URL; //process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
 
     const router = useRouter();
     const onClick = () => {

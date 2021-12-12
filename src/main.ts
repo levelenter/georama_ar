@@ -14,6 +14,9 @@ import { dataContext } from "./biz/DataContext";
 
 import "vue-image-lightbox/dist/vue-image-lightbox.min";
 
+const base = process.env.BASE_URL; //process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
+console.log("base", base);
+
 window.onerror = (message, file, line) => {
   MessageDialog.systemError(
     "不明な箇所",
