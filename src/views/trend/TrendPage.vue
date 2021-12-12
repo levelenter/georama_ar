@@ -64,25 +64,15 @@
         style="min-height: 18rem; width: 53rem; margin-left: 1rem"
         class="row gy-5"
       >
-        <div class="col-4 px-1" v-for="i of [0, 1, 2, 3, 4]" :key="i">
+        <div class="col-4 px-1" v-for="i of [0, 1, 2, 3, 4, 5, 6, 7]" :key="i">
           <media-section
-            :src="page.t2"
-            radius="1rem"
+            :src="page[`t${4 + i}`]"
+            :lens="false"
             type="png"
+            radius="1rem"
             height="12.7rem"
             width="12.7rem"
           />
-          <!-- <div
-            style="
-              height: 12.7rem;
-              width: 12.7rem;
-              border: solid 0.2rem rgb(108, 108, 108);
-              border-radius: 0.5rem;
-            "
-            class="fs-44"
-          >
-            {{ i }}
-          </div> -->
         </div>
       </div>
     </div>

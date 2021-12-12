@@ -6,7 +6,7 @@ class XlsColDef {
     colName: string,
     defName: string,
     isUse: boolean,
-    type: "text" | "media" | "category_icon" | null = null,
+    type: "text" | "media" | "category_icon" | "needsicon" | null = null,
     fileName: string | null = null,
     has_rolspan = false
   ) {
@@ -56,13 +56,33 @@ class XlsColDef {
       });
       fs.writeFileSync(fileName, originIcon, { encoding: "binary" });
     }
+
+    if (this.type === "needsicon") {
+      const fileName = baseDir + "/" + this.fileName + ".png";
+      let originfile;
+
+      // TODO: アイコンタイプにより場合分け
+      if (this.originalValue !== "undefined") {
+        originfile = "../public/needs_icon/icon_sample.png";
+      } else if (this.originalValue === "undefined") {
+        originfile = "../public/needs_icon/nodata.png";
+      } else {
+        originfile = "../public/needs_icon/nodata.png";
+      }
+
+      const iconPath = path.resolve(__dirname, originfile);
+      const originIcon = fs.readFileSync(iconPath, {
+        encoding: "binary",
+      });
+      fs.writeFileSync(fileName, originIcon, { encoding: "binary" });
+    }
   }
 
   colName = "";
   defName = "";
   originalValue = "";
   isUse = false;
-  type: "text" | "media" | "category_icon" | null = null;
+  type: "text" | "media" | "category_icon" | "needsicon" | null = null;
   fileName: string | null = null;
   has_rolspan = false;
 }
@@ -71,14 +91,14 @@ export class XlsxRowData {
     Object.keys(this).forEach((k) => {
       const col: XlsColDef = (this as any)[k];
 
-      console.log(col.colName);
-      console.log(
-        row.rowNumber(),
-        `${col.colName.toUpperCase()}${row.rowNumber()}`
-      );
-      console.log(
-        sheet.cell(`${col.colName.toUpperCase()}${row.rowNumber()}`).value()
-      );
+      // console.log(col.colName);
+      // console.log(
+      //   row.rowNumber(),
+      //   `${col.colName.toUpperCase()}${row.rowNumber()}`
+      // );
+      // console.log(
+      //   sheet.cell(`${col.colName.toUpperCase()}${row.rowNumber()}`).value()
+      // );
       // 大文字でアドレス化
       const colNameU = col.colName.toUpperCase();
       // 行結合されているなら1行下を取る
@@ -215,68 +235,62 @@ export class XlsxRowData {
   );
   c22Needs = new XlsColDef("v", "⑦ニーズ", true, "text", "trend3");
   c23No = new XlsColDef("w", "130", false);
-  c24NeedsIcon1 = new XlsColDef(
-    "x",
-    "ウ/ニーズアイコン1",
-    true,
-    "media",
-    "trend4"
-  );
+  c24NeedsIcon1 = new XlsColDef("x", "ウ/ニーズアイコン(合計数)", false);
   c25NeedsIcon1 = new XlsColDef(
     "y",
-    "ウ/ニーズアイコン2",
+    "ウ/ニーズアイコン1",
     true,
-    "media",
-    "trend5"
+    "needsicon",
+    "trend4"
   );
   c26NeedsIcon1 = new XlsColDef(
     "z",
-    "ウ/ニーズアイコン3",
+    "ウ/ニーズアイコン2",
     true,
-    "media",
-    "trend6"
+    "needsicon",
+    "trend5"
   );
   c27NeedsIcon1 = new XlsColDef(
     "aa",
-    "ウ/ニーズアイコン4",
+    "ウ/ニーズアイコン3",
     true,
-    "media",
-    "trend7"
+    "needsicon",
+    "trend6"
   );
   c28NeedsIcon1 = new XlsColDef(
     "ab",
-    "ウ/ニーズアイコン5",
+    "ウ/ニーズアイコン4",
     true,
-    "media",
-    "trend8"
+    "needsicon",
+    "trend7"
   );
   c29NeedsIcon1 = new XlsColDef(
     "ac",
-    "ウ/ニーズアイコン6",
+    "ウ/ニーズアイコン5",
     true,
-    "media",
-    "trend9"
+    "needsicon",
+    "trend8"
   );
   c30NeedsIcon1 = new XlsColDef(
     "ad",
-    "ウ/ニーズアイコン7",
+    "ウ/ニーズアイコン6",
     true,
-    "media",
-    "trend10"
+    "needsicon",
+    "trend9"
   );
   c31NeedsIcon1 = new XlsColDef(
     "ae",
-    "ウ/ニーズアイコン8",
+    "ウ/ニーズアイコン7",
     true,
-    "media",
-    "trend11"
+    "needsicon",
+    "trend10"
   );
   c32NeedsIcon1 = new XlsColDef(
     "af",
-    "ウ/ニーズアイコン9",
+    "ウ/ニーズアイコン8",
     true,
-    "media",
-    "trend12"
+    "needsicon",
+    "trend11"
   );
   c33Point = new XlsColDef("ag", "⑧ここに注目", true, "text", "point2");
   c34No = new XlsColDef("ah", "130", false);

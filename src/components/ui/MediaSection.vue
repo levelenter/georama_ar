@@ -6,6 +6,7 @@
     :style="{ height: height, width: width }"
   >
     <img
+      v-if="lens"
       :src="base + 'ui/lens.png'"
       class="bottom-0 end-0"
       :style="{
@@ -23,6 +24,7 @@
       @click="clickImage"
       v-if="type === 'png' || type === 'jpg'"
       :src="src"
+      @error="errorImage"
       :style="{
         height: height,
         width: width,
@@ -92,7 +94,7 @@
 </template>
 <script lang='ts'>
 import { TimeOutLogic } from "@/biz/TimeOutLogic";
-import { defineComponent, ref } from "@vue/runtime-core";
+import { defineComponent, ref, toRef } from "@vue/runtime-core";
 
 import { useRouter } from "vue-router";
 export default defineComponent({
@@ -104,9 +106,11 @@ export default defineComponent({
     height: { type: String, default: "30rem" },
     width: { type: String, default: "60rem" },
     radius: { type: String, default: "0rem" },
+    lens: { type: Boolean, default: true },
   },
   setup: (props) => {
     const full = ref(false); // コンテンツのフルスクリーン制御
+    const src = toRef(props, "src");
     const clickImage = () => {
       TimeOutLogic.instance.resetTimeout();
       full.value = !full.value;
@@ -133,7 +137,6 @@ export default defineComponent({
     });
 
     const base = process.env.BASE_URL; //process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
-
     return { clickImage, toggleFullScreen, full, base };
   },
 });
