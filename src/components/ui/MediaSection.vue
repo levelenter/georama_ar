@@ -62,7 +62,7 @@
       justify-content-center
     "
   >
-    <img :src="src" @click="clickImage" class="w-100" />
+    <img :src="src" @click="clickImage" class="h-100" />
   </div>
 
   <div
