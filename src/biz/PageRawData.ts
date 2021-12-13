@@ -125,9 +125,9 @@ export class PageRawData {
     alldata.push(
       this.getAliveImageContentsPath(m2_3Path).then((result) => {
         this.m2_3_type = result;
+        this.m2_3 = `${m2_3Path}.${this.m2_3_type}`;
       })
     );
-    this.m2_3 = `${m2_3Path}.${this.m2_3_type}`;
     // console.log(this.m2_3);
     //--
 
@@ -173,9 +173,9 @@ export class PageRawData {
     alldata.push(
       this.getAliveImageContentsPath(t2Path).then((result) => {
         this.t2_type = result;
+        this.t2 = `${t2Path}.${this.t2_type}`;
       })
     );
-    this.t2 = `${t2Path}.${this.t2_type}`;
     alldata.push(
       this.getText(`${contextPath}/trend3.txt`).then((result) => {
         this.t3 = result;
@@ -184,15 +184,16 @@ export class PageRawData {
     //--
 
     //-- 市場のニーズメディア--
-    const t4Path = `${contextPath}/trend4`;
-    alldata.push(
-      this.getAliveImageContentsPath(t4Path).then((result) => {
-        this.t4_type = result;
-      })
-    );
-    this.t4 = `${t4Path}.${this.t4_type}`;
+    // const t4Path = `${contextPath}/trend4.png`;
+    // alldata.push(
+    //   this.getAliveImageContentsPath(t4Path).then((result) => {
+    //     this.t4_type = result;
+    //   })
+    // );
+    // this.t4 = `${t4Path}.${this.t4_type}`;
     //--
 
+    this.t4 = `${contextPath}/trend4.png`;
     this.t5 = `${contextPath}/trend5.png`;
     this.t6 = `${contextPath}/trend6.png`;
     this.t7 = `${contextPath}/trend7.png`;
@@ -201,14 +202,14 @@ export class PageRawData {
     this.t10 = `${contextPath}/trend10.png`;
     this.t11 = `${contextPath}/trend11.png`;
 
-    //-- 市場のニーズメディア--
+    //-- ポイントメディア--
     const p1Path = `${contextPath}/point1`;
     alldata.push(
       this.getAliveImageContentsPath(p1Path).then((result) => {
         this.p1_type = result;
+        this.p1 = `${p1Path}.${this.p1_type}`;
       })
     );
-    this.p1 = `${p1Path}.${this.p1_type}`;
     //--
 
     alldata.push(

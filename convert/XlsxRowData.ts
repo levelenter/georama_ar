@@ -1,6 +1,7 @@
 import xls from "xlsx-populate";
 import fs from "fs";
 import path from "path";
+import { mediaFiles } from "./origin/mediaLoad";
 class XlsColDef {
   constructor(
     colName: string,
@@ -41,7 +42,23 @@ class XlsColDef {
         const no = splitMinus[2];
         const area = matchs[1];
         const type = matchs[2];
-        console.log(matchString, splitMinus, no, area, type);
+
+        const found = mediaFiles.find((f) => {
+          console.log(f);
+          return f.startsWith(matchString);
+        });
+        if (found) {
+          console.log(matchString, splitMinus, no, area, type, found);
+
+          const mediaPath = path.resolve("./convert/origin/media", found);
+          const originMedia = fs.readFileSync(mediaPath, {
+            encoding: "binary",
+          });
+          const ext = path.extname(mediaPath);
+          const fileName = baseDir + "/" + this.fileName + ext;
+          console.log("filename ", this.fileName);
+          fs.writeFileSync(fileName, originMedia, { encoding: "binary" });
+        }
       }
     }
 
@@ -76,9 +93,9 @@ class XlsColDef {
       let originfile;
 
       // TODO: アイコンタイプにより場合分け
-      if (this.originalValue !== "undefined") {
+      if (this.originalValue !== "") {
         originfile = "../public/needs_icon/icon_sample.png";
-      } else if (this.originalValue === "undefined") {
+      } else if (this.originalValue === "") {
         originfile = "../public/needs_icon/nodata.png";
       } else {
         originfile = "../public/needs_icon/nodata.png";
@@ -100,19 +117,11 @@ class XlsColDef {
   fileName: string | null = null;
   has_rolspan = false;
 }
+
 export class XlsxRowData {
   constructor(sheet: xls.Sheet, row: xls.Row) {
     Object.keys(this).forEach((k) => {
       const col: XlsColDef = (this as any)[k];
-
-      // console.log(col.colName);
-      // console.log(
-      //   row.rowNumber(),
-      //   `${col.colName.toUpperCase()}${row.rowNumber()}`
-      // );
-      // console.log(
-      //   sheet.cell(`${col.colName.toUpperCase()}${row.rowNumber()}`).value()
-      // );
 
       // 大文字でアドレス化
       const colNameU = col.colName.toUpperCase();
@@ -126,7 +135,6 @@ export class XlsxRowData {
         value = (value as any).text();
       }
       value = value ?? "";
-
       col.originalValue = value.toString();
     });
   }

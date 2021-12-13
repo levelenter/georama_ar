@@ -51,7 +51,6 @@ const start = async (): Promise<void> => {
   }
 
   const endRowNumber = endCell.rowNumber();
-
   const xslxRows: XlsxRowData[] = [];
   console.log("xslxデータロードスタート");
   for (let row = dataStartRowNumber; row <= endRowNumber; row++) {
