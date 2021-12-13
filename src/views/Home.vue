@@ -1,42 +1,36 @@
 <template>
   <div class="container h-100">
     <div class="d-flex align-items-center justify-content-center h-100 mt-5">
-      <div class="text-center h-75">
-        <h1 class="align-middle mb-4">
-          社会を支える日立造船の事業をご紹介します
-        </h1>
-
-        <img :src="tutorialImagePath" />
-
-        <h2 class="yg">タブレットを手に持って、マーカーをかざしてください</h2>
-        <button class="btn btn-primary w-50" @click="gotoAr">スタート</button>
-
-        <DebugJumptoContentsSection />
+      <div class="text-center h-100 p-4">
+        <img :src="tutorialImagePath" @click="gotoAr" class="h-75" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent, onMounted, ref } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
-import DebugJumptoContentsSection from "@/components/DebugJumptoContentsSection.vue";
 import { TimeOutLogic } from "@/biz/TimeOutLogic";
+import { DeviceSetting } from "@/components/functions/DeviceSetting";
 export default defineComponent({
-  components: {
-    // Test
-    DebugJumptoContentsSection,
-  },
+  components: {},
   props: {},
   setup: () => {
     const router = useRouter();
 
-    const tutorialImagePath = "";
+    const tutorialImagePath = ref("./waiting/waiting-A.png");
 
     const gotoAr = () => {
       TimeOutLogic.instance.resetTimeout();
       router.push({ name: "ARCamera" });
     };
+
+    onMounted(() => {
+      const setting = new DeviceSetting();
+      const area = setting.getArea() ?? "A";
+      tutorialImagePath.value = `./waiting/waiting-${area}.png`;
+    });
 
     return {
       gotoAr,

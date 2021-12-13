@@ -28,19 +28,24 @@ class DataContext {
   }
 
   async loadData(): Promise<DataContext> {
-    for (let i = 1; i <= 19; i++) {
-      console.log("page ", i);
-      const page = new PageRawData(`page${i}`);
-      try {
-        await page.init();
-      } catch (e) {
-        console.error(e);
-        continue;
+    const instance = DataContext.instance;
+    if (!instance) {
+      for (let i = 1; i <= 19; i++) {
+        console.log("page ", i);
+        const page = new PageRawData(`page${i}`);
+        try {
+          await page.init();
+        } catch (e) {
+          console.error(e);
+          continue;
+        }
+        console.log("inited page", i, page);
+        this.pages.push(page);
       }
-      console.log("inited page", i, page);
-      this.pages.push(page);
+      return this;
+    } else {
+      return instance;
     }
-    return this;
   }
 
   async getPage(id: string): Promise<PageRawData> {

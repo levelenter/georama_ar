@@ -10,7 +10,7 @@
     "build": "vue-cli-service build --mode production",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "conv": "ts-node tests/convert.ts"
+    "convert": "ts-node convert/start.ts"
   },
   "dependencies": {
     "@kyvg/vue3-notification": "^2.3.4",

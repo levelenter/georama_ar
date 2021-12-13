@@ -31,6 +31,18 @@ class XlsColDef {
       }
     }
 
+    if (this.type === "media") {
+      const matchs = this.originalValue.match(
+        /(A|B|C|D|E)-[0-9]-[0-9]{2}-(ア|イ|ウ|エ)/
+      );
+      const matchString = matchs[0];
+      const splitMinus = matchString.split("-");
+      const no = splitMinus[2];
+      const area = matchs[1];
+      const type = matchs[2];
+      console.log(matchString, splitMinus, no, area, type);
+    }
+
     /*
      * カテゴリアイコンはオリジナルをコピー
      */

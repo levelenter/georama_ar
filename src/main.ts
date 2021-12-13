@@ -31,7 +31,7 @@ TimeOutLogic.instance.timerStart().timeOutAction = () => {
 dataContext?.loadData().then(() => {
   console.log("context loaded");
   // セッションキャッシュしない
-  // dataContext?.saveInSession();
+  dataContext?.saveInSession();
 });
 
 export const vue = createApp(App);
