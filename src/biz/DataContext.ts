@@ -10,8 +10,13 @@ class DataContext {
   static DATA_CACHE_KEY = "data_context_in_session";
   static get instance() {
     const sessionString = sessionStorage.getItem(this.DATA_CACHE_KEY);
+    const localString = localStorage.getItem(this.DATA_CACHE_KEY);
     if (sessionString) {
       const sessionContext: DataContext = JSON.parse(sessionString);
+      this._instance = new DataContext();
+      this._instance.pages = sessionContext.pages;
+    } else if (localString) {
+      const sessionContext: DataContext = JSON.parse(localString);
       this._instance = new DataContext();
       this._instance.pages = sessionContext.pages;
     } else {
@@ -24,6 +29,9 @@ class DataContext {
 
   async saveInSession(): Promise<void> {
     sessionStorage.setItem(DataContext.DATA_CACHE_KEY, JSON.stringify(this));
+  }
+  async saveInLocal(): Promise<void> {
+    localStorage.setItem(DataContext.DATA_CACHE_KEY, JSON.stringify(this));
   }
 
   async loadData(): Promise<DataContext> {
@@ -41,7 +49,6 @@ class DataContext {
         console.log("inited page", i, page);
         this.pages.push(page);
       }
-      await this.saveInSession();
       return this;
     } else {
       return instance;

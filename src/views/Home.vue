@@ -1,6 +1,10 @@
 <template>
   <div class="container h-100">
-    <div class="d-flex align-items-center justify-content-center h-100 mt-5">
+    <loading v-if="loading" />
+    <div
+      v-if="!loading"
+      class="d-flex align-items-center justify-content-center h-100 mt-5"
+    >
       <div class="text-center h-100 p-4">
         <img :src="tutorialImagePath" @click="gotoAr" class="h-75" />
       </div>
@@ -13,8 +17,10 @@ import { defineComponent, onMounted, ref } from "@vue/runtime-core";
 import { useRouter } from "vue-router";
 import { TimeOutLogic } from "@/biz/TimeOutLogic";
 import { DeviceSetting } from "@/components/functions/DeviceSetting";
+import { dataContext } from "@/biz/DataContext";
+import Loading from "@/components/Loading.vue";
 export default defineComponent({
-  components: {},
+  components: { Loading },
   props: {},
   setup: () => {
     const router = useRouter();
@@ -26,14 +32,25 @@ export default defineComponent({
       router.push({ name: "ARCamera" });
     };
 
+    const loading = ref(false);
+
     onMounted(() => {
       const setting = new DeviceSetting();
       const area = setting.getArea() ?? "A";
-      tutorialImagePath.value = `./waiting/waiting-${area}.png`;
+      const base = process.env.BASE_URL;
+
+      tutorialImagePath.value = `${base}waiting/waiting-${area}.png`;
+      loading.value = true;
+      dataContext?.loadData().then(() => {
+        console.log("context loaded");
+        dataContext?.saveInSession().then();
+        loading.value = false;
+      });
     });
 
     return {
       gotoAr,
+      loading,
       tutorialImagePath,
     };
   },

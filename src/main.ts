@@ -28,14 +28,8 @@ TimeOutLogic.instance.timerStart().timeOutAction = () => {
   router.push({ name: "Home" });
 };
 
-dataContext?.loadData().then(() => {
-  console.log("context loaded");
-  // セッションキャッシュしない
-  dataContext?.saveInSession();
+const vue = createApp(App);
+vue.use(router);
+vue.use(Notifications);
 
-  const vue = createApp(App);
-  vue.use(router);
-  vue.use(Notifications);
-
-  vue.mount("#app");
-});
+vue.mount("#app");

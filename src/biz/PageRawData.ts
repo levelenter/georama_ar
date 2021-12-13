@@ -96,37 +96,100 @@ export class PageRawData {
     console.log("env ", process.env.NODE_ENV);
 
     const contextPath = `${base}data/${this.pageName}`;
+
+    const alldata = [];
     this.m1_1 = `${contextPath}/main1_1.png`;
-    this.m1_2 = await this.getText(`${contextPath}/main1_2.txt`);
-    this.m1_3 = await this.getText(`${contextPath}/main1_3.txt`);
-    this.m2_1 = await this.getText(`${contextPath}/main2_1.txt`);
-    this.m2_2 = await this.getText(`${contextPath}/main2_2.txt`);
+
+    alldata.push(
+      this.getText(`${contextPath}/main1_2.txt`).then((result) => {
+        this.m1_2 = result;
+      })
+    );
+    alldata.push(
+      this.getText(`${contextPath}/main1_3.txt`).then((result) => {
+        this.m1_3 = result;
+      })
+    );
+    alldata.push(
+      this.getText(`${contextPath}/main2_1.txt`).then((result) => {
+        this.m2_1 = result;
+      })
+    );
+    alldata.push(
+      this.getText(`${contextPath}/main2_2.txt`).then((result) => {
+        this.m2_2 = result;
+      })
+    );
     //-- メディアの取得 --
     const m2_3Path = `${contextPath}/main2_3`;
-    this.m2_3_type = await this.getAliveImageContentsPath(m2_3Path);
+    alldata.push(
+      this.getAliveImageContentsPath(m2_3Path).then((result) => {
+        this.m2_3_type = result;
+      })
+    );
     this.m2_3 = `${m2_3Path}.${this.m2_3_type}`;
     // console.log(this.m2_3);
     //--
 
-    this.m3_1_1 = await this.getText(`${contextPath}/main3_1_1.txt`);
-    this.m3_1_2 = await this.getText(`${contextPath}/main3_1_2.txt`);
-    this.m3_2_1 = await this.getText(`${contextPath}/main3_2_1.txt`);
-    this.m3_2_2 = await this.getText(`${contextPath}/main3_2_2.txt`);
-    this.m3_3_1 = await this.getText(`${contextPath}/main3_3_1.txt`);
-    this.m3_3_2 = await this.getText(`${contextPath}/main3_3_2.txt`);
+    alldata.push(
+      this.getText(`${contextPath}/main3_1_1.txt`).then((result) => {
+        this.m3_1_1 = result;
+      })
+    );
+    alldata.push(
+      this.getText(`${contextPath}/main3_1_2.txt`).then((result) => {
+        this.m3_1_2 = result;
+      })
+    );
+    alldata.push(
+      this.getText(`${contextPath}/main3_2_1.txt`).then((result) => {
+        this.m3_2_1 = result;
+      })
+    );
+    alldata.push(
+      this.getText(`${contextPath}/main3_2_2.txt`).then((result) => {
+        this.m3_2_2 = result;
+      })
+    );
+    alldata.push(
+      this.getText(`${contextPath}/main3_3_1.txt`).then((result) => {
+        this.m3_3_1 = result;
+      })
+    );
+    alldata.push(
+      this.getText(`${contextPath}/main3_3_2.txt`).then((result) => {
+        this.m3_3_2 = result;
+      })
+    );
 
-    this.t1 = await this.getText(`${contextPath}/trend1.txt`);
+    alldata.push(
+      this.getText(`${contextPath}/trend1.txt`).then((result) => {
+        this.t1 = result;
+      })
+    );
 
     //-- 市場の動向メディア --
     const t2Path = `${contextPath}/trend2`;
-    this.t2_type = await this.getAliveImageContentsPath(t2Path);
+    alldata.push(
+      this.getAliveImageContentsPath(t2Path).then((result) => {
+        this.t2_type = result;
+      })
+    );
     this.t2 = `${t2Path}.${this.t2_type}`;
-    this.t3 = await this.getText(`${contextPath}/trend3.txt`);
+    alldata.push(
+      this.getText(`${contextPath}/trend3.txt`).then((result) => {
+        this.t3 = result;
+      })
+    );
     //--
 
     //-- 市場のニーズメディア--
     const t4Path = `${contextPath}/trend4`;
-    this.t4_type = await this.getAliveImageContentsPath(t4Path);
+    alldata.push(
+      this.getAliveImageContentsPath(t4Path).then((result) => {
+        this.t4_type = result;
+      })
+    );
     this.t4 = `${t4Path}.${this.t4_type}`;
     //--
 
@@ -140,12 +203,25 @@ export class PageRawData {
 
     //-- 市場のニーズメディア--
     const p1Path = `${contextPath}/point1`;
-    this.p1_type = await this.getAliveImageContentsPath(p1Path);
+    alldata.push(
+      this.getAliveImageContentsPath(p1Path).then((result) => {
+        this.p1_type = result;
+      })
+    );
     this.p1 = `${p1Path}.${this.p1_type}`;
     //--
 
-    this.p2 = await this.getText(`${contextPath}/point2.txt`);
-    this.p3 = await this.getText(`${contextPath}/point3.txt`);
+    alldata.push(
+      this.getText(`${contextPath}/point2.txt`).then((result) => {
+        this.p2 = result;
+      })
+    );
+    alldata.push(
+      this.getText(`${contextPath}/point3.txt`).then((result) => {
+        this.p3 = result;
+      })
+    );
+    await Promise.all(alldata);
     return this;
   }
 }
