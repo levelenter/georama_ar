@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import xls from "xlsx-populate";
 import { XlsxRowData } from "./XlsxRowData";
 import fs from "fs";
@@ -6,7 +7,7 @@ import path from "path";
 /**
  * 定数
  */
-const originXlsxPathName = "./origin/data.xlsx";
+const originXlsxPathName = "./convert/origin/data.xlsx";
 const sheetName = "モニター文記入一覧1210";
 const wirteDirPath = "../public/data/";
 
@@ -29,6 +30,7 @@ function dirCreate(dir: string) {
     fs.mkdirSync(dir, { recursive: true });
   }
 }
+
 /**
  * スタート
  */
@@ -60,6 +62,8 @@ const start = async (): Promise<void> => {
     console.log("xslxデータロード", rowData.cell(1).value());
     // console.log("rownum", rowData.rowNumber());
     // console.log("M", sheet.cell(`M${rowData.rowNumber() + 1}`).value());
+
+    // console.log("10D", typeof sheet.cell("D36").value() === "object");
 
     xslxRows.push(new XlsxRowData(sheet, rowData));
   }

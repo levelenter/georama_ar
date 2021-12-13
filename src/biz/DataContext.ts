@@ -1,12 +1,11 @@
 import { MessageDialog } from "@/components/functions/MessageDialog";
-import { range } from "@/components/functions/utils";
 import { PageRawData } from "./PageRawData";
 class DataContext {
   pages: PageRawData[] = [];
-  pageNumbers: number[] = range(0, 18);
   constructor() {
     // hide constructor
   }
+
   private static _instance: DataContext | null = null;
   static DATA_CACHE_KEY = "data_context_in_session";
   static get instance() {
@@ -29,7 +28,7 @@ class DataContext {
 
   async loadData(): Promise<DataContext> {
     const instance = DataContext.instance;
-    if (!instance) {
+    if (!instance || instance.pages.length === 0) {
       for (let i = 1; i <= 19; i++) {
         console.log("page ", i);
         const page = new PageRawData(`page${i}`);
@@ -42,6 +41,7 @@ class DataContext {
         console.log("inited page", i, page);
         this.pages.push(page);
       }
+      await this.saveInSession();
       return this;
     } else {
       return instance;

@@ -35,12 +35,14 @@ class XlsColDef {
       const matchs = this.originalValue.match(
         /(A|B|C|D|E)-[0-9]-[0-9]{2}-(ア|イ|ウ|エ)/
       );
-      const matchString = matchs[0];
-      const splitMinus = matchString.split("-");
-      const no = splitMinus[2];
-      const area = matchs[1];
-      const type = matchs[2];
-      console.log(matchString, splitMinus, no, area, type);
+      if (matchs) {
+        const matchString = matchs[0];
+        const splitMinus = matchString.split("-");
+        const no = splitMinus[2];
+        const area = matchs[1];
+        const type = matchs[2];
+        console.log(matchString, splitMinus, no, area, type);
+      }
     }
 
     /*
@@ -111,13 +113,21 @@ export class XlsxRowData {
       // console.log(
       //   sheet.cell(`${col.colName.toUpperCase()}${row.rowNumber()}`).value()
       // );
+
       // 大文字でアドレス化
       const colNameU = col.colName.toUpperCase();
       // 行結合されているなら1行下を取る
       const rowNum = col.has_rolspan ? row.rowNumber() + 1 : row.rowNumber();
 
       // セルのデータを取得
-      col.originalValue = `${sheet.cell(`${colNameU}${rowNum}`).value()}`;
+      let value = sheet.cell(`${colNameU}${rowNum}`).value();
+      if (typeof value === "object") {
+        // オブジェクト型ならリッチテキストなので値を取得
+        value = (value as any).text();
+      }
+      value = value ?? "";
+
+      col.originalValue = value.toString();
     });
   }
 

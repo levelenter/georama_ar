@@ -32,10 +32,10 @@ dataContext?.loadData().then(() => {
   console.log("context loaded");
   // セッションキャッシュしない
   dataContext?.saveInSession();
+
+  const vue = createApp(App);
+  vue.use(router);
+  vue.use(Notifications);
+
+  vue.mount("#app");
 });
-
-export const vue = createApp(App);
-vue.use(router);
-vue.use(Notifications);
-
-export const mounted = vue.mount("#app");
