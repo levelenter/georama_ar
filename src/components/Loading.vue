@@ -1,6 +1,9 @@
 <template>
   <div class="w-100 mt-5 pt-5 d-flex align-items-center justify-content-center">
-    <img :src="url" />
+    <div><h1 class="yg fs-42">初期データローディング...</h1></div>
+  </div>
+  <div class="w-100 mt-5 pt-5 d-flex align-items-center justify-content-center">
+    <img :src="url" class="mt-5" />
   </div>
 </template>
 <script lang='ts'>
