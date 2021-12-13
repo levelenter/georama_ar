@@ -37,6 +37,7 @@ export default defineComponent({
       ds.setArea(area);
       MessageDialog.alert(`このデバイスの待機画面を${area}にセットしました。`);
     };
+
     return {
       title,
       setArea,
