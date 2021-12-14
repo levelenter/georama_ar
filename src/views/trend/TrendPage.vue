@@ -35,9 +35,8 @@
     <div
       class="w-100 d-flex justify-content-center h2 mt-4 fs-44"
       style="color: gray"
-    >
-      {{ page.m1_2 }}
-    </div>
+      v-html="page.m1_2"
+    ></div>
   </header>
 
   <main class="w-100" style="margin-top: 10rem">

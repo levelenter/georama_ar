@@ -7,11 +7,11 @@
         <img :src="page.m1_1" style="width: 16 rem; height: 20rem" />
       </div>
       <div class="ms-5 mt-5 w-100">
-        <div class="yg-semi fs-80">{{ page.m1_2 }}</div>
+        <div class="yg-semi fs-80" v-html="page.m1_2"></div>
         <div
           style="background-color: yellow; height: 1.5rem; margin-top: -1.3rem"
         />
-        <div class="fs-50" style="color: gray">{{ page.m1_3 }}</div>
+        <div class="fs-50" style="color: gray" v-html="page.m1_3"></div>
       </div>
     </header>
 
@@ -29,15 +29,16 @@
           />
         </div>
         <div class="me-5">
-          <div class="yg-semi fs-49" style="margin-top: 4.5rem">
-            {{ page.m2_1 }}
-          </div>
+          <div
+            class="yg-semi fs-49"
+            style="margin-top: 4.5rem"
+            v-html="page.m2_1"
+          ></div>
           <div
             class="yg fs-42"
             style="margin-top: 3.5rem; overflow-y: scroll; height: 30rem"
-          >
-            {{ page.m2_2 }}
-          </div>
+            v-html="page.m2_2"
+          ></div>
         </div>
       </div>
 
@@ -52,31 +53,28 @@
         <img :src="base + 'ui/didyouknow.png'" />
       </div>
       <div class="separater-border px-5">
-        <div class="fs-42 yg-semi">{{ page.m3_1_1 }}</div>
+        <div class="fs-42 yg-semi" v-html="page.m3_1_1"></div>
         <div
           class="fs-22 yg"
           style="overflow-y: scroll; height: 10rem; max-width: 40rem"
-        >
-          {{ page.m3_1_2 }}
-        </div>
+          v-html="page.m3_1_2"
+        ></div>
       </div>
       <div class="w-25 separater-border px-5">
-        <div class="fs-42 yg-semi">{{ page.m3_2_1 }}</div>
+        <div class="fs-42 yg-semi" v-html="page.m3_2_1"></div>
         <div
           class="fs-22 yg"
           style="overflow-y: scroll; height: 10rem; max-width: 40rem"
-        >
-          {{ page.m3_2_2 }}
-        </div>
+          v-html="page.m3_2_2"
+        ></div>
       </div>
       <div class="w-25 separater-border px-5">
-        <div class="fs-42 yg-semi">{{ page.m3_3_1 }}</div>
+        <div class="fs-42 yg-semi" v-html="page.m3_3_1"></div>
         <div
           class="fs-22 yg"
           style="overflow-y: scroll; height: 10rem; max-width: 40rem"
-        >
-          {{ page.m3_3_2 }}
-        </div>
+          v-html="page.m3_3_2"
+        ></div>
       </div>
     </footer>
   </div>

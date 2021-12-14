@@ -8,7 +8,7 @@ import path from "path";
  * 定数
  */
 const originXlsxPathName = "./convert/origin/data.xlsx";
-const sheetName = "モニター文記入一覧1210";
+const sheetName = "モニター文記入一覧1203"; // "モニター文記入一覧1210";
 const wirteDirPath = "../public/data/";
 
 const dataStartRowNumber = 2;

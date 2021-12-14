@@ -135,6 +135,7 @@ export class XlsxRowData {
         value = (value as any).text();
       }
       value = value ?? "";
+      value = value.toString().replace(/\n/g, "<br/>");
       col.originalValue = value.toString();
     });
   }

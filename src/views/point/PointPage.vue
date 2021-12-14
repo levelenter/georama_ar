@@ -36,9 +36,8 @@
       <div
         class="w-100 d-flex justify-content-center h2 mt-4 fs-44"
         style="color: gray"
-      >
-        {{ page.m1_2 }}
-      </div>
+        v-html="page.m1_2"
+      ></div>
     </header>
 
     <main class="mt-4 ps-5 pt-5 d-flex">
@@ -54,9 +53,8 @@
       <div
         class="ms-3 ps-2 w-50 pe-5 me-5 fs-50"
         style="overflow-y: scroll; height: 46rem"
-      >
-        {{ page.p2 }}
-      </div>
+        v-html="page.p2"
+      ></div>
     </main>
 
     <footer
@@ -71,9 +69,8 @@
       <div
         style="overflow-y: scroll; height: 20rem"
         class="mt-4 mx-5 px-5 fs-39"
-      >
-        {{ page.p3 }}
-      </div>
+        v-html="page.p3"
+      ></div>
     </footer>
   </div>
 </template>
