@@ -90,16 +90,14 @@ class XlsColDef {
 
     if (this.type === "needsicon") {
       const fileName = baseDir + "/" + this.fileName + ".png";
-      let originfile;
 
-      // TODO: アイコンタイプにより場合分け
-      if (this.originalValue !== "") {
-        originfile = "../public/needs_icon/icon_sample.png";
-      } else if (this.originalValue === "") {
-        originfile = "../public/needs_icon/nodata.png";
-      } else {
-        originfile = "../public/needs_icon/nodata.png";
-      }
+      // AR番号ごとのファイルから取得
+      const arNumString = "00" + this.arNum;
+      const originfile = `./origin/trend_icon/trend-icon-${arNumString.substring(
+        arNumString.length - 2,
+        arNumString.length
+      )}.png`;
+      console.log(originfile);
 
       const iconPath = path.resolve(__dirname, originfile);
       const originIcon = fs.readFileSync(iconPath, {
@@ -116,6 +114,7 @@ class XlsColDef {
   type: "text" | "media" | "category_icon" | "needsicon" | null = null;
   fileName: string | null = null;
   has_rolspan = false;
+  arNum = "0";
 }
 
 export class XlsxRowData {
@@ -137,6 +136,7 @@ export class XlsxRowData {
       value = value ?? "";
       value = value.toString().replace(/\n/g, "<br/>");
       col.originalValue = value.toString();
+      col.arNum = row.cell(1).value() as string;
     });
   }
 
@@ -173,13 +173,13 @@ export class XlsxRowData {
     await this.c23No.write(baseDir);
     await this.c24NeedsIcon1.write(baseDir);
     await this.c25NeedsIcon1.write(baseDir);
-    await this.c26NeedsIcon1.write(baseDir);
-    await this.c27NeedsIcon1.write(baseDir);
-    await this.c28NeedsIcon1.write(baseDir);
-    await this.c29NeedsIcon1.write(baseDir);
-    await this.c30NeedsIcon1.write(baseDir);
-    await this.c31NeedsIcon1.write(baseDir);
-    await this.c32NeedsIcon1.write(baseDir);
+    // await this.c26NeedsIcon1.write(baseDir);
+    // await this.c27NeedsIcon1.write(baseDir);
+    // await this.c28NeedsIcon1.write(baseDir);
+    // await this.c29NeedsIcon1.write(baseDir);
+    // await this.c30NeedsIcon1.write(baseDir);
+    // await this.c31NeedsIcon1.write(baseDir);
+    // await this.c32NeedsIcon1.write(baseDir);
     await this.c33Point.write(baseDir);
     await this.c34No.write(baseDir);
     await this.c35Point.write(baseDir);
@@ -274,55 +274,55 @@ export class XlsxRowData {
     "needsicon",
     "trend4"
   );
-  c26NeedsIcon1 = new XlsColDef(
-    "z",
-    "ウ/ニーズアイコン2",
-    true,
-    "needsicon",
-    "trend5"
-  );
-  c27NeedsIcon1 = new XlsColDef(
-    "aa",
-    "ウ/ニーズアイコン3",
-    true,
-    "needsicon",
-    "trend6"
-  );
-  c28NeedsIcon1 = new XlsColDef(
-    "ab",
-    "ウ/ニーズアイコン4",
-    true,
-    "needsicon",
-    "trend7"
-  );
-  c29NeedsIcon1 = new XlsColDef(
-    "ac",
-    "ウ/ニーズアイコン5",
-    true,
-    "needsicon",
-    "trend8"
-  );
-  c30NeedsIcon1 = new XlsColDef(
-    "ad",
-    "ウ/ニーズアイコン6",
-    true,
-    "needsicon",
-    "trend9"
-  );
-  c31NeedsIcon1 = new XlsColDef(
-    "ae",
-    "ウ/ニーズアイコン7",
-    true,
-    "needsicon",
-    "trend10"
-  );
-  c32NeedsIcon1 = new XlsColDef(
-    "af",
-    "ウ/ニーズアイコン8",
-    true,
-    "needsicon",
-    "trend11"
-  );
+  // c26NeedsIcon1 = new XlsColDef(
+  //   "z",
+  //   "ウ/ニーズアイコン2",
+  //   true,
+  //   "needsicon",
+  //   "trend5"
+  // );
+  // c27NeedsIcon1 = new XlsColDef(
+  //   "aa",
+  //   "ウ/ニーズアイコン3",
+  //   true,
+  //   "needsicon",
+  //   "trend6"
+  // );
+  // c28NeedsIcon1 = new XlsColDef(
+  //   "ab",
+  //   "ウ/ニーズアイコン4",
+  //   true,
+  //   "needsicon",
+  //   "trend7"
+  // );
+  // c29NeedsIcon1 = new XlsColDef(
+  //   "ac",
+  //   "ウ/ニーズアイコン5",
+  //   true,
+  //   "needsicon",
+  //   "trend8"
+  // );
+  // c30NeedsIcon1 = new XlsColDef(
+  //   "ad",
+  //   "ウ/ニーズアイコン6",
+  //   true,
+  //   "needsicon",
+  //   "trend9"
+  // );
+  // c31NeedsIcon1 = new XlsColDef(
+  //   "ae",
+  //   "ウ/ニーズアイコン7",
+  //   true,
+  //   "needsicon",
+  //   "trend10"
+  // );
+  // c32NeedsIcon1 = new XlsColDef(
+  //   "af",
+  //   "ウ/ニーズアイコン8",
+  //   true,
+  //   "needsicon",
+  //   "trend11"
+  // );
   c33Point = new XlsColDef("ag", "⑧ここに注目", true, "text", "point2");
   c34No = new XlsColDef("ah", "130", false);
   c35Point = new XlsColDef(

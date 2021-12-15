@@ -2,8 +2,7 @@
   <div
     id="contents-image"
     class="my-2 position-relative"
-    style="object-fit: contain"
-    :style="{ height: height, width: width }"
+    :style="{ height: height, width: width, 'object-fit': object_fit }"
   >
     <img
       v-if="lens"
@@ -29,7 +28,7 @@
         height: height,
         width: width,
         'border-radius': radius,
-        'object-fit': 'cover', // 'contain' // もともとの表示をトリミングしない場合以下
+        'object-fit': object_fit, // 'contain' // もともとの表示をトリミングしない場合以下
       }"
     />
 
@@ -46,11 +45,7 @@
   <!-- Full Screen Image -->
   <div
     v-if="(type === 'png' || type === 'jpg') && full"
-    style="
-      object-fit: contain;
-      background-color: rgba(0, 0, 0, 0.6);
-      z-index: 1002;
-    "
+    style="background-color: rgba(0, 0, 0, 0.6); z-index: 1002"
     class="
       position-absolute
       top-0
@@ -62,7 +57,12 @@
       justify-content-center
     "
   >
-    <img :src="src" @click="clickImage" class="h-100" />
+    <img
+      :src="src"
+      @click="clickImage"
+      class="h-100 w-100"
+      style="object-fit: contain"
+    />
   </div>
 
   <div
@@ -107,6 +107,7 @@ export default defineComponent({
     width: { type: String, default: "60rem" },
     radius: { type: String, default: "0rem" },
     lens: { type: Boolean, default: true },
+    object_fit: { type: String, default: "contain" },
   },
   setup: (props) => {
     const full = ref(false); // コンテンツのフルスクリーン制御

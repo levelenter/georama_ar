@@ -60,19 +60,10 @@
       <text-contents :contents="page.t3" />
 
       <div
-        style="min-height: 18rem; width: 53rem; margin-left: 1rem"
+        style="min-height: 30rem; width: 53rem; margin-left: 1rem"
         class="row gy-5"
       >
-        <div class="col-4 px-1" v-for="i of [0, 1, 2, 3, 4, 5, 6, 7]" :key="i">
-          <media-section
-            :src="page[`t${4 + i}`]"
-            :lens="false"
-            type="png"
-            radius="1rem"
-            height="12.7rem"
-            width="12.7rem"
-          />
-        </div>
+        <media-section :src="page.t4" type="png" height="100%" width="100%" />
       </div>
     </div>
   </main>
