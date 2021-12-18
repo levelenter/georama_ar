@@ -44,11 +44,21 @@ export class PageRawData {
     let isAlive = false;
     try {
       const response = await axios.get(path);
+
       if (response.data && response.status === 200) isAlive = true;
     } catch (error) {
-      console.log(
-        `${path}は見つかりませんでした。他のメディア(png/mp4/jpgのいずれか)が使われているようです `
-      );
+      const errorResponse = (error as any).response;
+      console.dir(error);
+      if (errorResponse.status === 404) {
+        console.log(
+          `${path}は見つかりませんでした。他のメディア(png/mp4/jpgのいずれか)が使われているようです `,
+          error
+        );
+        isAlive = false;
+      } else {
+        // 404以外はタイムアウトであり、コンテンツとしては生きてるのでOK
+        isAlive = true;
+      }
     }
     return isAlive;
   }

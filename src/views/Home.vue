@@ -1,11 +1,11 @@
 <template>
-  <div class="container h-100">
+  <div class="h-100 w-100">
     <loading v-if="loading" />
     <div
       v-if="!loading"
-      class="d-flex align-items-center justify-content-center h-100 mt-5"
+      class="d-flex align-items-center justify-content-center h-100"
     >
-      <div class="text-center h-100 p-4">
+      <div class="text-center h-100">
         <img :src="tutorialImagePath" @click="gotoAr" class="h-75" />
       </div>
     </div>
