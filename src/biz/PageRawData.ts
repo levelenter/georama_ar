@@ -43,21 +43,32 @@ export class PageRawData {
   async isAlivePath(path: string): Promise<boolean> {
     let isAlive = false;
     try {
-      const response = await axios.get(path);
-
+      const response = await axios.get(path, { timeout: 100 });
       if (response.data && response.status === 200) isAlive = true;
     } catch (error) {
       const errorResponse = (error as any).response;
-      console.dir(error);
-      if (errorResponse.status === 404) {
+      console.dir("in arive check error ", error);
+      if (!errorResponse || errorResponse.status) {
         console.log(
-          `${path}は見つかりませんでした。他のメディア(png/mp4/jpgのいずれか)が使われているようです `,
+          `${path}はタイムアウトしました。コンテンツは有効です `,
           error
         );
-        isAlive = false;
-      } else {
         // 404以外はタイムアウトであり、コンテンツとしては生きてるのでOK
         isAlive = true;
+      } else {
+        if (errorResponse.status === 404) {
+          console.log(
+            `${path}は見つかりませんでした。他のメディア(png/mp4/jpgのいずれか)が使われているようです `,
+            error
+          );
+          isAlive = false;
+        } else {
+          console.log(
+            `${path}はその他のレスポンスエラーが発生しました。他のメディア(png/mp4/jpgのいずれか)が使われているようです `,
+            error
+          );
+          isAlive = false;
+        }
       }
     }
     return isAlive;
