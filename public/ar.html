@@ -9,10 +9,10 @@
   ></script>
   <style>
     #arjs-video {
-      height: 120rem;
+      height: 100%;
     }
   </style>
-  <body style="height: 120rem">
+  <body style="height: 100%">
     <h1 style="margin: 3rem 3rem">AR画面をロード中...</h1>
     <a-scene
       embedded=""
@@ -21,7 +21,14 @@
       arjs="trackingMethod: best; sourceType: webcam; matrixCodeType: 3x3;detectionMode:mono_and_matrix; debugUIEnabled: false;"
       artoolkit=""
     >
-      <a-marker-camera rotation-reader=""> </a-marker-camera>
+      <a-marker-camera rotation-reader="">
+        <a-box
+          wireframe="true"
+          position="0 0 0"
+          scale="1 0 1"
+          color="black"
+        ></a-box>
+      </a-marker-camera>
     </a-scene>
   </body>
   <script>
@@ -47,19 +54,37 @@
         cam.append(a_marker);
       }
     });
-    document.addEventListener("markerFound", (e) => {
-      parent.console.log("marker found ", e.target);
-      parent.console.log(`id:${e.target.id}`);
-      const markerdId = e.target.id;
-      if (markerdId && markerdId !== "cam") {
-        window.parent.postMessage(
-          {
-            action: "markerFoundMessage",
-            markerId: markerdId,
-          },
-          "*"
-        );
+
+    function moveToInfo(markerdId) {
+      // マーカーリストから消えてなければ遷移
+      const found = foundMarkers.find((i) => i === markerdId);
+      console.log(foundMarkers);
+      if (found) {
+        const param = {
+          action: "markerFoundMessage",
+          markerId: markerdId,
+        };
+        window.parent.postMessage(param, "*");
       }
+    }
+
+    let foundMarkers = [];
+    document.addEventListener("markerFound", (e) => {
+      const markerdId = e.target.id;
+      foundMarkers.push(markerdId);
+      if (!markerdId || markerdId === "cam") {
+        return;
+      }
+      // marker and id clear
+      setInterval(() => {
+        moveToInfo(markerdId);
+      }, 2000);
+    });
+
+    document.addEventListener("markerLost", (e) => {
+      const markerdId = e.target.id;
+      console.log("markerLost", markerdId, foundMarkers.join());
+      foundMarkers = foundMarkers.filter((i) => i !== markerdId);
     });
   </script>
 </html>
