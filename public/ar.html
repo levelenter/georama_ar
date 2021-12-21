@@ -22,12 +22,12 @@
       artoolkit=""
     >
       <a-marker-camera rotation-reader="">
-        <a-box
+        <!-- <a-box
           wireframe="true"
           position="0 0 0"
           scale="1 0 1"
           color="black"
-        ></a-box>
+        ></a-box> -->
       </a-marker-camera>
     </a-scene>
   </body>
@@ -78,7 +78,7 @@
       // marker and id clear
       setInterval(() => {
         moveToInfo(markerdId);
-      }, 5000);
+      }, 3000);
     });
 
     document.addEventListener("markerLost", (e) => {
