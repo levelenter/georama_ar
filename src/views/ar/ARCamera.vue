@@ -13,7 +13,8 @@
 
   <iframe
     :src="`${publicPath}ar.html`"
-    class="h-100 position-absolute top-0 w-100"
+    class="position-absolute top-0 w-100"
+    style="height: 120rem"
   >
   </iframe>
 </template>
