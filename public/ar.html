@@ -30,6 +30,7 @@
         ></a-box> -->
       </a-marker-camera>
     </a-scene>
+    <audio id="se" src="./se/found.mp3"></audio>
   </body>
   <script>
     window.addEventListener("load", () => {
@@ -75,6 +76,10 @@
       if (!markerdId || markerdId === "cam") {
         return;
       }
+
+      const audio = document.getElementById("se");
+      audio.play();
+
       // marker and id clear
       setInterval(() => {
         moveToInfo(markerdId);

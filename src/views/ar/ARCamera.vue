@@ -36,7 +36,9 @@ export default defineComponent({
       console.log(e, e.data.action);
       if (e.data.action !== "markerFoundMessage") return;
       console.log(`${e.data.markerId}`);
+
       TimeOutLogic.instance.resetTimeout();
+
       router.push({ name: "MainPage", query: { id: e.data.markerId } });
     });
 

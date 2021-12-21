@@ -17,12 +17,12 @@ import "vue-image-lightbox/dist/vue-image-lightbox.min";
 const base = process.env.BASE_URL; //process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
 console.log("base", base);
 
-window.onerror = (message, file, line) => {
-  MessageDialog.systemError(
-    "不明な箇所",
-    `が発生しました line ${line} file ${file} message ${message}`
-  );
-};
+// window.onerror = (message, file, line) => {
+//   MessageDialog.systemError(
+//     "不明な箇所",
+//     `が発生しました line ${line} file ${file} message ${message}`
+//   );
+// };
 
 TimeOutLogic.instance.timerStart().timeOutAction = () => {
   router.push({ name: "Home" });

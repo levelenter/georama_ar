@@ -12,7 +12,6 @@
         height: '5.1rem',
         width: '5.1rem',
         position: 'absolute',
-
         bottom: 0,
         right: 0,
       }"
@@ -38,6 +37,7 @@
       :style="{ height: height, width: width }"
       autoplay
       muted
+      controls
       @click="toggleFullScreen"
     ></video>
   </div>
@@ -89,6 +89,7 @@
       class="w-100"
       @click="toggleFullScreen"
       autoplay
+      controls
     ></video>
   </div>
 </template>
@@ -111,12 +112,12 @@ export default defineComponent({
   },
   setup: (props) => {
     const full = ref(false); // コンテンツのフルスクリーン制御
-    const src = toRef(props, "src");
     const clickImage = () => {
       TimeOutLogic.instance.resetTimeout();
       full.value = !full.value;
     };
     const toggleFullScreen = () => {
+      console.log("toggle full ", props.src);
       TimeOutLogic.instance.resetTimeout();
       full.value = !full.value;
       if (!document.fullscreenElement) {
@@ -130,12 +131,12 @@ export default defineComponent({
       }
     };
 
-    const isFullScreen = ref(false); // Windowのフルスクリーン制御
-    window.addEventListener("fullscreenchange", (e) => {
-      isFullScreen.value = !isFullScreen.value;
-      full.value = isFullScreen.value;
-      console.log(e);
-    });
+    // const isFullScreen = ref(false); // Windowのフルスクリーン制御
+    // window.addEventListener("fullscreenchange", (e) => {
+    //   isFullScreen.value = !isFullScreen.value;
+    //   full.value = isFullScreen.value;
+    //   console.log(e);
+    // });
 
     const base = process.env.BASE_URL; //process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
     return { clickImage, toggleFullScreen, full, base };
