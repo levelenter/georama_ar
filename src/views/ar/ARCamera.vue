@@ -17,6 +17,7 @@
     style="height: 120rem"
   >
   </iframe>
+  <audio id="se" :src="`${publicPath}se/found.mp3`"></audio>
 </template>
 <script lang='ts'>
 import { TimeOutLogic } from "@/biz/TimeOutLogic";
@@ -39,7 +40,13 @@ export default defineComponent({
 
       TimeOutLogic.instance.resetTimeout();
 
-      router.push({ name: "MainPage", query: { id: e.data.markerId } });
+      const audio = document.getElementById("se") as HTMLAudioElement;
+      audio.play();
+
+      const id = setInterval(() => {
+        router.push({ name: "MainPage", query: { id: e.data.markerId } });
+        clearInterval(id);
+      }, 800);
     });
 
     return {
