@@ -88,7 +88,6 @@
       class="w-100"
       @click="toggleFullScreen"
       autoplay
-      controls
     ></video>
   </div>
 </template>

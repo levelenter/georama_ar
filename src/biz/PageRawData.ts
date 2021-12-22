@@ -43,12 +43,12 @@ export class PageRawData {
   async isAlivePath(path: string): Promise<boolean> {
     let isAlive = false;
     try {
-      const response = await axios.get(path, { timeout: 100 });
+      const response = await axios.get(path);
       if (response.data && response.status === 200) isAlive = true;
     } catch (error) {
       const errorResponse = (error as any).response;
       console.dir("in arive check error ", error);
-      if (!errorResponse || errorResponse.status) {
+      if (!errorResponse || !errorResponse.status) {
         console.log(
           `${path}はタイムアウトしました。コンテンツは有効です `,
           error
