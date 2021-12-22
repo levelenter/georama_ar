@@ -37,7 +37,6 @@
       :style="{ height: height, width: width }"
       autoplay
       muted
-      controls
       @click="toggleFullScreen"
     ></video>
   </div>
