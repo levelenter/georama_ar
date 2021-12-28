@@ -56,7 +56,7 @@
         <div class="fs-42 yg-semi" v-html="page.m3_1_1"></div>
         <div
           class="fs-22 yg"
-          style="overflow-y: scroll; height: 10rem; max-width: 40rem"
+          style="height: 10rem; max-width: 40rem"
           v-html="page.m3_1_2"
         ></div>
       </div>
@@ -64,7 +64,7 @@
         <div class="fs-42 yg-semi" v-html="page.m3_2_1"></div>
         <div
           class="fs-22 yg"
-          style="overflow-y: scroll; height: 10rem; max-width: 40rem"
+          style="height: 10rem; max-width: 40rem"
           v-html="page.m3_2_2"
         ></div>
       </div>
@@ -72,7 +72,7 @@
         <div class="fs-42 yg-semi" v-html="page.m3_3_1"></div>
         <div
           class="fs-22 yg"
-          style="overflow-y: scroll; height: 10rem; max-width: 40rem"
+          style="height: 10rem; max-width: 40rem"
           v-html="page.m3_3_2"
         ></div>
       </div>
