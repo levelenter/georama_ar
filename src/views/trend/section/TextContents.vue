@@ -5,7 +5,7 @@
   >
     <div
       style="overflow-y: scroll; height: 28.8rem"
-      class="fs-42"
+      class="fs-40"
       v-html="contents"
     ></div>
   </div>

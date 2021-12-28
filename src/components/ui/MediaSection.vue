@@ -82,11 +82,22 @@
       justify-content-center
     "
   >
+    <!-- Full Screen Close Button -->
+    <button
+      @click="onFullClose"
+      v-if="full"
+      class="position-absolute top-0 end-0 clear-default-button-style"
+      style="z-index: 10000"
+    >
+      <img :src="base + 'ui/batu.png'" style="height: 8rem" />
+    </button>
+
     <video
       v-if="type === 'mp4'"
       :src="src"
       class="w-100"
       @click="toggleFullScreen"
+      controls
       autoplay
     ></video>
   </div>
@@ -118,15 +129,20 @@ export default defineComponent({
       console.log("toggle full ", props.src);
       TimeOutLogic.instance.resetTimeout();
       full.value = !full.value;
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-        full.value = true;
-      } else {
-        full.value = false;
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        }
-      }
+      // if (!document.fullscreenElement) {
+      //   document.documentElement.requestFullscreen();
+      //   full.value = true;
+      // } else {
+      //   full.value = false;
+      //   if (document.exitFullscreen) {
+      //     document.exitFullscreen();
+      //   }
+      // }
+    };
+
+    const onFullClose = () => {
+      full.value = false;
+      console.log("teete");
     };
 
     // const isFullScreen = ref(false); // Windowのフルスクリーン制御
@@ -137,7 +153,18 @@ export default defineComponent({
     // });
 
     const base = process.env.BASE_URL; //process.env.NODE_ENV === "production" ? "/georama_ar" : "/";
-    return { clickImage, toggleFullScreen, full, base };
+    return { clickImage, toggleFullScreen, onFullClose, full, base };
   },
 });
 </script>
+<style scoped>
+.clear-default-button-style {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+</style>
