@@ -6,7 +6,13 @@
       class="d-flex align-items-center justify-content-center h-100"
     >
       <div class="text-center h-100">
-        <img :src="tutorialImagePath" @click="gotoAr" class="h-75" />
+        <video
+          :src="tutorialImagePath"
+          @click="gotoAr"
+          class="h-75"
+          autoplay
+          muted
+        />
       </div>
     </div>
   </div>
@@ -25,7 +31,7 @@ export default defineComponent({
   setup: () => {
     const router = useRouter();
 
-    const tutorialImagePath = ref("./waiting/waiting-A.png");
+    const tutorialImagePath = ref("./waiting/Hitati_taiki_A.mp4");
 
     const gotoAr = () => {
       TimeOutLogic.instance.resetTimeout();
@@ -39,7 +45,7 @@ export default defineComponent({
       const area = setting.getArea() ?? "A";
       const base = process.env.BASE_URL;
 
-      tutorialImagePath.value = `${base}waiting/waiting-${area}.png`;
+      tutorialImagePath.value = `${base}waiting/Hitati_taiki_${area}.mp4`;
       loading.value = true;
       dataContext?.loadData().then(() => {
         console.log("context loaded");
