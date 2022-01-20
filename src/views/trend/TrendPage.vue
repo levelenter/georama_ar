@@ -49,7 +49,7 @@
         <media-section
           :src="page.t2"
           :type="page.t2_type"
-          height="30rem"
+          height="30.5rem"
           width="53rem"
         />
       </div>

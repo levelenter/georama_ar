@@ -51,7 +51,7 @@
       </div>
 
       <div
-        class="ms-3 ps-2 w-50 pe-5 me-5 fs-50"
+        class="ms-3 ps-2 w-50 pe-5 me-5 fs-40"
         style="overflow-y: scroll; height: 46rem"
         v-html="page.p2"
       ></div>
@@ -67,14 +67,14 @@
     >
       <div><img :src="base + 'ui/check.png'" style="" /></div>
       <div
-        style="overflow-y: scroll; height: 20rem"
+        style="overflow-y: scroll; height: 20rem; font-weight: bold"
         class="mt-4 mx-5 px-5 fs-39"
         v-html="page.p3"
       ></div>
     </footer>
   </div>
 </template>
-<script lang='ts'>
+<script lang="ts">
 import { dataContext } from "@/biz/DataContext";
 import { PageRawData } from "@/biz/PageRawData";
 import { MessageDialog } from "@/components/functions/MessageDialog";
