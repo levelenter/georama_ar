@@ -1,5 +1,0 @@
-sftp -p 10021 plaza01@plaza.ekankyo21.com 
-P56a-MN4df
-
-
-https://plaza.ekankyo21.com/georama_ar/
