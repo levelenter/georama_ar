@@ -36,7 +36,7 @@
           ></div>
           <div
             class="yg fs-42"
-            style="margin-top: 3.5rem; overflow-y: scroll; height: 30rem"
+            style="margin-top: 3.5rem; overflow-y: scroll; height: 31rem"
             v-html="page.m2_2"
           ></div>
         </div>
