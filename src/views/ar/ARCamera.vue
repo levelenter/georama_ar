@@ -5,9 +5,10 @@
       position: fixed;
       top: 0rem;
       left: 0rem;
-      width: 100%;
-      height: 120rem;
+      width: calc(100%-2px);
+      height: calc(120rem-2px);
       z-index: 1000;
+      overflow-y: hidden;overflow-x: hidden;
     "
   />
 
