@@ -14,7 +14,7 @@
   <iframe
     :src="`${publicPath}ar.html`"
     class="position-absolute top-0 w-100"
-    style="height: 120rem"
+    style="height: 120rem;overflow-y: hidden;overflow-x: hidden;"
   >
   </iframe>
   <audio id="se" :src="`${publicPath}se/found.mp3`"></audio>
