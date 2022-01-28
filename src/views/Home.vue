@@ -1,17 +1,19 @@
 <template>
-  <div class="h-100 w-100">
+  <div class="w-100 h-100">
     <loading v-if="loading" />
     <div
       v-if="!loading"
-      class="d-flex align-items-center justify-content-center h-100"
+      class="d-flex align-items-center justify-content-center"
+      style="height: calc(100% - 3px)"
     >
       <div class="text-center h-100">
         <video
           :src="tutorialImagePath"
           @click="gotoAr"
           class="h-75"
-          autoplay
+          autoplay="true"
           muted
+          loop
         />
       </div>
     </div>
@@ -52,6 +54,8 @@ export default defineComponent({
         dataContext?.saveInSession().then();
         loading.value = false;
       });
+      const video = document.querySelector("video") as HTMLVideoElement;
+      video.play().then();
     });
 
     return {
