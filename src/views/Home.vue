@@ -4,7 +4,7 @@
     <div
       v-if="!loading"
       class="d-flex align-items-center justify-content-center"
-      style="height: calc(100% - 3px)"
+      style="height: calc(100% - 5px); width: calc(100% - 5px)"
     >
       <div class="text-center h-100">
         <video
