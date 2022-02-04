@@ -8,14 +8,15 @@
       width: calc(100%-2px);
       height: calc(120rem-2px);
       z-index: 1000;
-      overflow-y: hidden;overflow-x: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
     "
   />
 
   <iframe
     :src="`${publicPath}ar.html`"
     class="position-absolute top-0 w-100"
-    style="height: 120rem;overflow-y: hidden;overflow-x: hidden;"
+    style="height: 120rem; overflow-y: auto; overflow-x: hidden"
   >
   </iframe>
   <audio id="se" :src="`${publicPath}se/found.mp3`"></audio>

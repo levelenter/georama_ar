@@ -4,7 +4,7 @@
     class="px-5"
   >
     <div
-      style="overflow-y: scroll; height: 29.4rem"
+      style="overflow-y: auto; height: 29.4rem"
       class="fs-39"
       v-html="contents"
     ></div>
