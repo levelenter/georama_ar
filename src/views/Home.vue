@@ -4,13 +4,13 @@
     <div
       v-if="!loading"
       class="d-flex align-items-center justify-content-center"
-      style="height: calc(100% - 5px); width: calc(100% - 5px)"
+      style="height: 100%; width: 100%"
     >
       <div class="text-center h-100">
         <video
           :src="tutorialImagePath"
           @click="gotoAr"
-          class="h-75"
+          width="99%"
           autoplay="true"
           muted
           loop
