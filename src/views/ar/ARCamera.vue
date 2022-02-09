@@ -35,10 +35,18 @@ export default defineComponent({
     const arhtml = "ar.html";
     const router = useRouter();
 
+    // 最後に見つけたマーカーを記憶する
+    let lastFoundMarker = "";
+
     window.addEventListener("message", function (e) {
       console.log(e, e.data.action);
       if (e.data.action !== "markerFoundMessage") return;
       console.log(`${e.data.markerId}`);
+
+      // 最後に見つけたマーカと同じものであれば反応しない
+      if (lastFoundMarker === `${e.data.markerId}`) {
+        return;
+      }
 
       TimeOutLogic.instance.resetTimeout();
 
@@ -46,6 +54,7 @@ export default defineComponent({
       audio.play();
 
       const id = setInterval(() => {
+        lastFoundMarker = `${e.data.markerId}`;
         router.push({ name: "MainPage", query: { id: e.data.markerId } });
         clearInterval(id);
       }, 800);
