@@ -10,7 +10,8 @@
         <video
           :src="tutorialImagePath"
           @click="gotoAr"
-          width="99%"
+          :width="'99%'"
+          style="width: 100%"
           autoplay="true"
           muted
           loop
