@@ -12,7 +12,6 @@
       overflow-x: hidden;
     "
   />
-
   <iframe
     :src="`${publicPath}ar.html`"
     class="position-absolute top-0 w-100"
@@ -36,7 +35,7 @@ export default defineComponent({
     const router = useRouter();
 
     // 最後に見つけたマーカーを記憶する
-    let lastFoundMarker = "";
+    let lastFoundMarker = sessionStorage.getItem("last_found");
 
     window.addEventListener("message", function (e) {
       console.log(e, e.data.action);
@@ -45,24 +44,27 @@ export default defineComponent({
 
       // 最後に見つけたマーカと同じものであれば反応しない
       if (lastFoundMarker === `${e.data.markerId}`) {
+        console.log("lastFoundMarker", `${e.data.markerId}`, lastFoundMarker);
         return;
+      } else {
+        TimeOutLogic.instance.resetTimeout();
+
+        const audio = document.getElementById("se") as HTMLAudioElement;
+        audio.play();
+
+        const id = setInterval(() => {
+          sessionStorage.setItem("last_found", `${e.data.markerId}`);
+
+          router.push({ name: "MainPage", query: { id: e.data.markerId } });
+          clearInterval(id);
+        }, 800);
       }
-
-      TimeOutLogic.instance.resetTimeout();
-
-      const audio = document.getElementById("se") as HTMLAudioElement;
-      audio.play();
-
-      const id = setInterval(() => {
-        lastFoundMarker = `${e.data.markerId}`;
-        router.push({ name: "MainPage", query: { id: e.data.markerId } });
-        clearInterval(id);
-      }, 800);
     });
 
     return {
       arhtml,
       publicPath,
+      lastFoundMarker,
     };
   },
 });
