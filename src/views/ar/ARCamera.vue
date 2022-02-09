@@ -34,17 +34,20 @@ export default defineComponent({
     const arhtml = "ar.html";
     const router = useRouter();
 
-    // 最後に見つけたマーカーを記憶する
-    let lastFoundMarker = sessionStorage.getItem("last_found");
-
     window.addEventListener("message", function (e) {
+      // 最後に見つけたマーカーを記憶する
+      let lastFoundMarker = ref(sessionStorage.getItem("last_found"));
       console.log(e, e.data.action);
       if (e.data.action !== "markerFoundMessage") return;
       console.log(`${e.data.markerId}`);
 
       // 最後に見つけたマーカと同じものであれば反応しない
-      if (lastFoundMarker === `${e.data.markerId}`) {
-        console.log("lastFoundMarker", `${e.data.markerId}`, lastFoundMarker);
+      if (lastFoundMarker.value === `${e.data.markerId}`) {
+        console.log(
+          "lastFoundMarker",
+          `${e.data.markerId}`,
+          lastFoundMarker.value
+        );
         return;
       } else {
         TimeOutLogic.instance.resetTimeout();
@@ -64,7 +67,6 @@ export default defineComponent({
     return {
       arhtml,
       publicPath,
-      lastFoundMarker,
     };
   },
 });
