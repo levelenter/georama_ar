@@ -36,32 +36,32 @@ export default defineComponent({
 
     window.addEventListener("message", function (e) {
       // 最後に見つけたマーカーを記憶する
-      let lastFoundMarker = ref(sessionStorage.getItem("last_found"));
+      // let lastFoundMarker = ref(sessionStorage.getItem("last_found"));
       console.log(e, e.data.action);
       if (e.data.action !== "markerFoundMessage") return;
       console.log(`${e.data.markerId}`);
 
-      // 最後に見つけたマーカと同じものであれば反応しない
-      if (lastFoundMarker.value === `${e.data.markerId}`) {
-        console.log(
-          "lastFoundMarker",
-          `${e.data.markerId}`,
-          lastFoundMarker.value
-        );
-        return;
-      } else {
-        TimeOutLogic.instance.resetTimeout();
+      // // 最後に見つけたマーカと同じものであれば反応しない
+      // if (lastFoundMarker.value === `${e.data.markerId}`) {
+      //   console.log(
+      //     "lastFoundMarker",
+      //     `${e.data.markerId}`,
+      //     lastFoundMarker.value
+      //   );
+      //   return;
+      // } else {
+      TimeOutLogic.instance.resetTimeout();
 
-        const audio = document.getElementById("se") as HTMLAudioElement;
-        audio.play();
+      const audio = document.getElementById("se") as HTMLAudioElement;
+      audio.play();
 
-        const id = setInterval(() => {
-          sessionStorage.setItem("last_found", `${e.data.markerId}`);
+      const id = setInterval(() => {
+        // sessionStorage.setItem("last_found", `${e.data.markerId}`);
 
-          router.push({ name: "MainPage", query: { id: e.data.markerId } });
-          clearInterval(id);
-        }, 800);
-      }
+        router.push({ name: "MainPage", query: { id: e.data.markerId } });
+        clearInterval(id);
+      }, 800);
+      // }
     });
 
     return {
