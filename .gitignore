@@ -2,7 +2,7 @@
 node_modules
 /dist
 /__dev
-/public/data
+/public/data/
 
 # local env files
 .env.local
