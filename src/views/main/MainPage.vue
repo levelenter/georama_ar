@@ -3,7 +3,7 @@
     <close-button class="position-absolute top-0 end-0" />
 
     <header class="d-flex ps-5 mt-5 w-100 mb-5 pb-4">
-      <div class="me-1">
+      <div class="me-1 mt-2">
         <img :src="page.m1_1" style="width: 16 rem; height: 22rem" />
       </div>
       <div class="ms-5 mt-5 w-100">
